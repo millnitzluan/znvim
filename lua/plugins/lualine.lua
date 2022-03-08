@@ -6,15 +6,45 @@ local colors = {
 	red = "#ec5f67",
 }
 
+-- Lsp server name .
+local function lsp()
+	return {
+		function()
+			local msg = "No Active Lsp"
+			local ft = vim.api.nvim_buf_get_option(0, "filetype")
+			local clients = vim.lsp.get_active_clients()
+			if next(clients) == nil then
+				return msg
+			end
+
+			local clients_output = {}
+			for _, client in ipairs(clients) do
+				local filetypes = client.config.filetypes
+				if filetypes and vim.fn.index(filetypes, ft) ~= -1 then
+					table.insert(clients_output, client.name)
+				end
+			end
+
+			if #clients_output > 0 then
+				return table.concat(clients_output, "/")
+			else
+				return msg
+			end
+		end,
+		icon = " LSP:",
+		color = { gui = "bold" },
+	}
+end
+
 local conditions = {
 	buffer_not_empty = function()
-		return vim.fn.empty(vim.fn.expand "%:t") ~= 1
+		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 	end,
 	hide_in_width = function()
 		return vim.fn.winwidth(0) > 80
 	end,
 	check_git_workspace = function()
-		local filepath = vim.fn.expand "%:p:h"
+		local filepath = vim.fn.expand("%:p:h")
 		local gitdir = vim.fn.finddir(".git", filepath .. ";")
 		return gitdir and #gitdir > 0 and #gitdir < #filepath
 	end,
@@ -25,8 +55,17 @@ local config = {
 		theme = "gruvbox",
 	},
 	sections = {
-		lualine_a = {},
-		lualine_b = {},
+		lualine_a = { "mode" },
+		lualine_b = {
+			lsp(),
+			"branch",
+			{ "diff", symbols = { added = " ", modified = "柳 ", removed = " " } },
+			{
+				"diagnostics",
+				sources = { "nvim_diagnostic" },
+				symbols = { error = " ", warn = " ", info = " " },
+			},
+		},
 		lualine_y = {},
 		lualine_z = {},
 		lualine_c = {},
@@ -50,26 +89,26 @@ local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
-ins_left {
+ins_left({
 	function()
 		return "▊"
 	end,
 	padding = { left = 0, right = 0 },
-}
+})
 
-ins_left {
+ins_left({
 	"branch",
 	icon = "",
 	padding = { left = 2, right = 1 },
-}
+})
 
-ins_left {
+ins_left({
 	"filetype",
 	cond = conditions.buffer_not_empty,
 	padding = { left = 2, right = 1 },
-}
+})
 
-ins_left {
+ins_left({
 	"diff",
 	symbols = { added = " ", modified = "柳", removed = " " },
 	diff_color = {
@@ -79,9 +118,9 @@ ins_left {
 	},
 	cond = conditions.hide_in_width,
 	padding = { left = 2, right = 1 },
-}
+})
 
-ins_left {
+ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	symbols = { error = " ", warn = " ", info = " ", hint = " " },
@@ -91,15 +130,15 @@ ins_left {
 		color_info = { fg = colors.cyan },
 	},
 	padding = { left = 2, right = 1 },
-}
+})
 
-ins_left {
+ins_left({
 	function()
 		return "%="
 	end,
-}
+})
 
-ins_right {
+ins_right({
 	function(msg)
 		msg = msg or "Inactive"
 		local buf_clients = vim.lsp.buf_get_clients()
@@ -118,11 +157,11 @@ ins_right {
 			end
 		end
 
-		local formatters = require "core.utils"
+		local formatters = require("core.utils")
 		local supported_formatters = formatters.list_registered_formatters(buf_ft)
 		vim.list_extend(buf_client_names, supported_formatters)
 
-		local linters = require "core.utils"
+		local linters = require("core.utils")
 		local supported_linters = linters.list_registered_linters(buf_ft)
 		vim.list_extend(buf_client_names, supported_linters)
 
@@ -132,9 +171,9 @@ ins_right {
 	color = { gui = "none" },
 	padding = { left = 0, right = 1 },
 	cond = conditions.hide_in_width,
-}
+})
 
-ins_right {
+ins_right({
 	function()
 		local b = vim.api.nvim_get_current_buf()
 		if next(vim.treesitter.highlighter.active[b]) then
@@ -145,22 +184,22 @@ ins_right {
 	color = { fg = colors.green },
 	padding = { left = 1, right = 0 },
 	cond = conditions.hide_in_width,
-}
+})
 
-ins_right {
+ins_right({
 	"location",
 	padding = { left = 1, right = 1 },
-}
+})
 
-ins_right {
+ins_right({
 	"progress",
 	padding = { left = 0, right = 0 },
-}
+})
 
-ins_right {
+ins_right({
 	function()
-		local current_line = vim.fn.line "."
-		local total_lines = vim.fn.line "$"
+		local current_line = vim.fn.line(".")
+		local total_lines = vim.fn.line("$")
 		local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
 		local line_ratio = current_line / total_lines
 		local index = math.ceil(line_ratio * #chars)
@@ -169,14 +208,13 @@ ins_right {
 	padding = { left = 1, right = 1 },
 	color = { fg = colors.yellow },
 	cond = nil,
-}
+})
 
-ins_right {
+ins_right({
 	function()
 		return "▊"
 	end,
 	padding = { left = 1, right = 0 },
-}
+})
 
 require("lualine").setup(config)
-

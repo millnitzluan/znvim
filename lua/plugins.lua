@@ -26,8 +26,31 @@ local startup = function(use)
 	use("ellisonleao/gruvbox.nvim")
 	use("christoomey/vim-tmux-navigator")
 	use("nvim-lua/plenary.nvim")
-	use("neovim/nvim-lspconfig")
 	use("tpope/vim-surround")
+	use({ "folke/lua-dev.nvim" })
+
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"onsails/lspkind-nvim",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lua",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		config = function()
+			require("plugins.cmp")
+		end,
+	})
+
+	use({
+		"neovim/nvim-lspconfig",
+		requires = { "williamboman/nvim-lsp-installer" },
+		config = function()
+			require("plugins.lsp")
+		end,
+	})
 
 	use({
 		"kyazdani42/nvim-web-devicons",
