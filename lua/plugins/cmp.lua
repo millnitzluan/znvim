@@ -31,28 +31,8 @@ cmp.setup({
 		}),
 	},
 	mapping = {
-		["<tab>"] = cmp.config.disable,
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-e>"] = cmp.mapping.close(),
-		["<C-y>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		}, { "i", "c" }),
-		["<C-Space>"] = cmp.mapping({
-			i = cmp.mapping.complete(),
-			c = function(_)
-				if cmp.visible() then
-					if not cmp.confirm({ select = true }) then
-						return
-					end
-				else
-					cmp.complete()
-				end
-			end,
-		}),
+		["<tab>"] = cmp.mapping.select_next_item(),
 	},
-
 	sorting = {
 		comparators = {
 			compare.kind,
