@@ -22,47 +22,94 @@ vim.cmd([[
 
 -- add plugins
 local startup = function(use)
-	use 'wbthomason/packer.nvim'
+	use("wbthomason/packer.nvim")
+	use("ellisonleao/gruvbox.nvim")
+	use("christoomey/vim-tmux-navigator")
+	use("nvim-lua/plenary.nvim")
+	use("neovim/nvim-lspconfig")
+	use("tpope/vim-surround")
 
-	use 'morhetz/gruvbox'
-	use 'christoomey/vim-tmux-navigator'
-	use { 
-		'kyazdani42/nvim-web-devicons', 
-		event = 'VimEnter',
+	use({
+		"kyazdani42/nvim-web-devicons",
+		event = "VimEnter",
 		config = function()
 			require("plugins.icons")
 		end,
-	}
+	})
 
-	use {
-		'kyazdani42/nvim-tree.lua',
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("plugins.null-ls")
+		end,
+	})
+
+	use({
+		"kyazdani42/nvim-tree.lua",
 		requires = {
-			'kyazdani42/nvim-web-devicons',
+			"kyazdani42/nvim-web-devicons",
 		},
 		config = function()
 			require("plugins.nvim-tree")
 		end,
-	}
+	})
 
-	use {
-		"nvim-lua/plenary.nvim",
-	}
+	-- Statusline
+	use({
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("plugins.lualine")
+		end,
+	})
 
-	use {
+	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		config = function()
 			require("plugins.telescope")
 		end,
-	}
+	})
 
-	use {
+	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-	}
+	})
 
-	use "neovim/nvim-lspconfig"
-	use "jose-elias-alvarez/null-ls.nvim"
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		event = "BufRead",
+		cmd = {
+			"TSInstall",
+			"TSInstallInfo",
+			"TSInstallSync",
+			"TSUninstall",
+			"TSUpdate",
+			"TSUpdateSync",
+			"TSDisableAll",
+			"TSEnableAll",
+		},
+		config = function()
+			require("plugins.treesitter")
+		end,
+		requires = {
+			{
+				-- Parenthesis highlighting
+				"p00f/nvim-ts-rainbow",
+				after = "nvim-treesitter",
+			},
+			{
+				-- Autoclose tags
+				"windwp/nvim-ts-autotag",
+				after = "nvim-treesitter",
+			},
+			{
+				-- Context based commenting
+				"JoosepAlviste/nvim-ts-context-commentstring",
+				after = "nvim-treesitter",
+			},
+		},
+	})
 end
 
 -- load plugins

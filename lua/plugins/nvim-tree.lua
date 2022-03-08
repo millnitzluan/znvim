@@ -3,10 +3,10 @@ local g = vim.g
 g.nvim_tree_indent_markers = 1
 
 vim.g["nvim_tree_show_icons"] = {
-  git = 0,
+  git = 1,
   folders = 1,
   files = 1,
-  folder_arrows = 0,
+  folder_arrows = 1,
 }
 
 require('nvim-tree').setup({

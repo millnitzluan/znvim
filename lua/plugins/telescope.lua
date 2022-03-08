@@ -1,19 +1,19 @@
-local actions = require "telescope.actions"
-require('telescope').load_extension('fzf')
+local actions = require("telescope.actions")
+require("telescope").load_extension("fzf")
 
 local default_mappings = {
 	n = {
-		['Q'] = actions.smart_add_to_qflist + actions.open_qflist,
-		['q'] = actions.smart_send_to_qflist + actions.open_qflist,
-		['<tab>'] = actions.toggle_selection + actions.move_selection_next,
-		['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
-		['v'] = actions.file_vsplit,
-		['s'] = actions.file_split,
-		['<cr>'] = actions.file_edit,
+		["Q"] = actions.smart_add_to_qflist + actions.open_qflist,
+		["q"] = actions.smart_send_to_qflist + actions.open_qflist,
+		["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+		["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
+		["v"] = actions.file_vsplit,
+		["s"] = actions.file_split,
+		["<cr>"] = actions.file_edit,
 	},
 }
 
-require('telescope').setup({
+require("telescope").setup({
 	defaults = {
 		mappings = {
 			i = {
@@ -79,8 +79,8 @@ require('telescope').setup({
 	},
 	pickers = {
 		buffers = {
-			prompt_title = 'Search Buffers',
-			mappings = vim.tbl_deep_extend('force', {
+			prompt_title = "Search Buffers",
+			mappings = vim.tbl_deep_extend("force", {
 				i = {
 					["<C-x>"] = actions.delete_buffer,
 					["<C-s>"] = actions.select_horizontal,
@@ -95,7 +95,7 @@ require('telescope').setup({
 					["<C-c>"] = actions.close,
 				},
 				n = {
-					['d'] = actions.delete_buffer,
+					["d"] = actions.delete_buffer,
 
 					["<CR>"] = actions.select_default + actions.center,
 
