@@ -11,6 +11,7 @@ vim.o.clipboard = "unnamedplus"
 
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
+vim.o.expandtab = true -- Enable the use of space in tab
 
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
