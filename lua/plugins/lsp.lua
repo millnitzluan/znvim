@@ -90,10 +90,26 @@ local required_servers = {
 	"vimls", -- vim
 	"jsonls", -- json
 	"sqlls", -- sql
+	"terraformls", -- terraform
 }
 
 -- default config
 local cfg = make_config()
+
+-- configuring null-ls for formatters
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+
+null_ls.setup({
+	sources = {
+		-- Set a formatter
+		formatting.stylua,
+		formatting.prettierd,
+		-- Set a linter
+		diagnostics.eslint_d,
+	},
+	on_attach = cfg.on_attach,
+})
 
 -- lua special setup
 local luadev = require("lua-dev").setup({

@@ -30,6 +30,13 @@ local startup = function(use)
 	use({ "folke/lua-dev.nvim" })
 
 	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
+
+	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
 			"onsails/lspkind-nvim",
@@ -60,12 +67,7 @@ local startup = function(use)
 		end,
 	})
 
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("plugins.null-ls")
-		end,
-	})
+	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	use({
 		"kyazdani42/nvim-tree.lua",
