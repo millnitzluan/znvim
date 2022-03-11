@@ -3,13 +3,13 @@ local g = vim.g
 g.nvim_tree_indent_markers = 1
 
 vim.g["nvim_tree_show_icons"] = {
-  git = 1,
-  folders = 1,
-  files = 1,
-  folder_arrows = 1,
+	git = 1,
+	folders = 1,
+	files = 1,
+	folder_arrows = 1,
 }
 
-require('nvim-tree').setup({
+require("nvim-tree").setup({
 	filters = {
 		dotfiles = false,
 		custom = {
@@ -46,7 +46,7 @@ require('nvim-tree').setup({
 		},
 	},
 	view = {
-		width = 25,
+		width = 50,
 		height = 30,
 		side = "left",
 		allow_resize = true,

@@ -36,21 +36,65 @@ local startup = function(use)
 		end,
 	})
 
+	-- Snippet engine
+	use({
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("luasnip/loaders/from_vscode").lazy_load()
+		end,
+		requires = {
+			-- Snippet collections
+			"rafamadriz/friendly-snippets",
+		},
+	})
+
+	-- Completion engine
 	use({
 		"hrsh7th/nvim-cmp",
-		requires = {
-			"onsails/lspkind-nvim",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lua",
-			"saadparwaiz1/cmp_luasnip",
-		},
+		event = "BufRead",
 		config = function()
 			require("plugins.cmp")
 		end,
 	})
 
+	-- Snippet completion source
+	use({
+		"saadparwaiz1/cmp_luasnip",
+		after = "nvim-cmp",
+	})
+
+	-- Buffer completion source
+	use({
+		"hrsh7th/cmp-buffer",
+		after = "nvim-cmp",
+	})
+
+	-- Path completion source
+	use({
+		"hrsh7th/cmp-path",
+		after = "nvim-cmp",
+	})
+
+	-- LSP completion source
+	use({
+		"hrsh7th/cmp-nvim-lsp",
+	})
+
+	-- use({
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	requires = {
+	-- 		"onsails/lspkind-nvim",
+	-- 		"hrsh7th/cmp-buffer",
+	-- 		"hrsh7th/cmp-nvim-lsp",
+	-- 		"hrsh7th/cmp-path",
+	-- 		"hrsh7th/cmp-nvim-lua",
+	-- 		"saadparwaiz1/cmp_luasnip",
+	-- 	},
+	-- 	config = function()
+	-- 		require("plugins.cmp")
+	-- 	end,
+	-- })
+	--
 	use({
 		"neovim/nvim-lspconfig",
 		requires = { "williamboman/nvim-lsp-installer" },
