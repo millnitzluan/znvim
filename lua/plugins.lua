@@ -24,6 +24,11 @@ vim.cmd([[
 local startup = function(use)
 	use("wbthomason/packer.nvim")
 	use("ellisonleao/gruvbox.nvim")
+	use({
+		"mnabila/gruvboy.nvim",
+		requires = { "rktjmp/lush.nvim" },
+	})
+
 	use("christoomey/vim-tmux-navigator")
 	use("nvim-lua/plenary.nvim")
 	use("tpope/vim-surround")
@@ -33,6 +38,16 @@ local startup = function(use)
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
+		end,
+	})
+
+	use({
+		"lewis6991/gitsigns.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("gitsigns").setup()
 		end,
 	})
 

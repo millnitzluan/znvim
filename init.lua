@@ -1,6 +1,6 @@
 vim.opt.termguicolors = true
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme gruvboy]])
 
 vim.o.fileencoding = "utf-8" -- File content encoding for the buffer
 vim.o.syntax = "on"

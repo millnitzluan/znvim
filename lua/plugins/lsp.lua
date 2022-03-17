@@ -74,7 +74,7 @@ local function make_config()
 		handlers = {
 			["textDocument/publishDiagnostics"] = vim.lsp.with(
 				vim.lsp.diagnostic.on_publish_diagnostics,
-				{ virtual_text = false }
+				{ virtual_text = true }
 			),
 		},
 	}
@@ -107,6 +107,7 @@ null_ls.setup({
 		formatting.prettierd,
 		-- Set a linter
 		diagnostics.eslint_d,
+		diagnostics.eslint,
 	},
 	on_attach = cfg.on_attach,
 })

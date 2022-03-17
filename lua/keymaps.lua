@@ -2,6 +2,7 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap("n", "<Leader>e", "<Cmd>NvimTreeToggle<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>E", "<Cmd>NvimTreeFindFile<CR>", { noremap = true })
 
 -- Telescope
 map("n", "<Leader>fe", "<CMD>Telescope grep_string<CR>", opts)
