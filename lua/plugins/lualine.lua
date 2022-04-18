@@ -1,220 +1,61 @@
 local colors = {
-	yellow = "#ecbe7b",
-	yellow_1 = "#ff9640",
-	cyan = "#008080",
-	green = "#98be65",
-	red = "#ec5f67",
+	blue = "#80a0ff",
+	cyan = "#79dac8",
+	black = "#080808",
+	white = "#c6c6c6",
+	red = "#ff5189",
+	violet = "#d183e8",
+	grey = "#303030",
+	-- gruv_bg = "#282828",
+	gruv_bg = "#252525",
+	-- gruv_bg_dark = "#252525",
+	gruv_bg_dark = "#282828",
 }
 
--- Lsp server name .
-local function lsp()
-	return {
-		function()
-			local msg = "No Active Lsp"
-			local ft = vim.api.nvim_buf_get_option(0, "filetype")
-			local clients = vim.lsp.get_active_clients()
-			if next(clients) == nil then
-				return msg
-			end
+local bubbles_theme = {
+	normal = {
+		a = { fg = colors.white, bg = colors.gruv_bg_dark },
+		b = { fg = colors.white, bg = colors.gruv_bg_dark },
+		c = { fg = colors.black, bg = colors.gruv_bg },
+	},
 
-			local clients_output = {}
-			for _, client in ipairs(clients) do
-				local filetypes = client.config.filetypes
-				if filetypes and vim.fn.index(filetypes, ft) ~= -1 then
-					table.insert(clients_output, client.name)
-				end
-			end
+	insert = { a = { fg = colors.black, bg = colors.blue } },
+	visual = { a = { fg = colors.black, bg = colors.cyan } },
+	replace = { a = { fg = colors.black, bg = colors.red } },
 
-			if #clients_output > 0 then
-				return table.concat(clients_output, "/")
-			else
-				return msg
-			end
-		end,
-		icon = " LSP:",
-		color = { gui = "bold" },
-	}
-end
-
-local conditions = {
-	buffer_not_empty = function()
-		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-	end,
-	hide_in_width = function()
-		return vim.fn.winwidth(0) > 80
-	end,
-	check_git_workspace = function()
-		local filepath = vim.fn.expand("%:p:h")
-		local gitdir = vim.fn.finddir(".git", filepath .. ";")
-		return gitdir and #gitdir > 0 and #gitdir < #filepath
-	end,
+	inactive = {
+		a = { fg = colors.white, bg = colors.gruv_bg },
+		b = { fg = colors.white, bg = colors.gruv_bg },
+		c = { fg = colors.black, bg = colors.gruv_bg },
+	},
 }
 
-local config = {
+require("lualine").setup({
 	options = {
-		theme = "gruvbox",
+		theme = bubbles_theme,
+		component_separators = "|",
+		section_separators = { left = "", right = "" },
 	},
 	sections = {
-		lualine_a = { "mode" },
-		lualine_b = {
-			lsp(),
-			"branch",
-			{ "diff", symbols = { added = " ", modified = "柳 ", removed = " " } },
-			{
-				"diagnostics",
-				sources = { "nvim_diagnostic" },
-				symbols = { error = " ", warn = " ", info = " " },
-			},
+		lualine_a = {
+			{ "mode", separator = { left = "" }, right_padding = 2 },
 		},
-		lualine_y = {},
-		lualine_z = {},
+		lualine_b = { "filename", "branch" },
 		lualine_c = {},
 		lualine_x = {},
+		lualine_y = { "filetype", "progress" },
+		lualine_z = {
+			{ "location", separator = { right = "" }, left_padding = 2 },
+		},
 	},
 	inactive_sections = {
-		lualine_a = {},
+		lualine_a = { "filename" },
 		lualine_b = {},
-		lualine_y = {},
-		lualine_z = {},
 		lualine_c = {},
 		lualine_x = {},
+		lualine_y = {},
+		lualine_z = { "location" },
 	},
-}
-
-local function ins_left(component)
-	table.insert(config.sections.lualine_c, component)
-end
-
-local function ins_right(component)
-	table.insert(config.sections.lualine_x, component)
-end
-
-ins_left({
-	function()
-		return "▊"
-	end,
-	padding = { left = 0, right = 0 },
+	tabline = {},
+	extensions = {},
 })
-
-ins_left({
-	"branch",
-	icon = "",
-	padding = { left = 2, right = 1 },
-})
-
-ins_left({
-	"filetype",
-	cond = conditions.buffer_not_empty,
-	padding = { left = 2, right = 1 },
-})
-
-ins_left({
-	"diff",
-	symbols = { added = " ", modified = "柳", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.yellow_1 },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-	padding = { left = 2, right = 1 },
-})
-
-ins_left({
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", info = " ", hint = " " },
-	diagnostics_color = {
-		color_error = { fg = colors.red },
-		color_warn = { fg = colors.yellow },
-		color_info = { fg = colors.cyan },
-	},
-	padding = { left = 2, right = 1 },
-})
-
-ins_left({
-	function()
-		return "%="
-	end,
-})
-
-ins_right({
-	function(msg)
-		msg = msg or "Inactive"
-		local buf_clients = vim.lsp.buf_get_clients()
-		if next(buf_clients) == nil then
-			if type(msg) == "boolean" or #msg == 0 then
-				return "Inactive"
-			end
-			return msg
-		end
-		local buf_ft = vim.bo.filetype
-		local buf_client_names = {}
-
-		for _, client in pairs(buf_clients) do
-			if client.name ~= "null-ls" then
-				table.insert(buf_client_names, client.name)
-			end
-		end
-
-		local formatters = require("core.utils")
-		local supported_formatters = formatters.list_registered_formatters(buf_ft)
-		vim.list_extend(buf_client_names, supported_formatters)
-
-		local linters = require("core.utils")
-		local supported_linters = linters.list_registered_linters(buf_ft)
-		vim.list_extend(buf_client_names, supported_linters)
-
-		return table.concat(buf_client_names, ", ")
-	end,
-	icon = " ",
-	color = { gui = "none" },
-	padding = { left = 0, right = 1 },
-	cond = conditions.hide_in_width,
-})
-
-ins_right({
-	function()
-		local b = vim.api.nvim_get_current_buf()
-		if next(vim.treesitter.highlighter.active[b]) then
-			return " 綠TS"
-		end
-		return ""
-	end,
-	color = { fg = colors.green },
-	padding = { left = 1, right = 0 },
-	cond = conditions.hide_in_width,
-})
-
-ins_right({
-	"location",
-	padding = { left = 1, right = 1 },
-})
-
-ins_right({
-	"progress",
-	padding = { left = 0, right = 0 },
-})
-
-ins_right({
-	function()
-		local current_line = vim.fn.line(".")
-		local total_lines = vim.fn.line("$")
-		local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-		local line_ratio = current_line / total_lines
-		local index = math.ceil(line_ratio * #chars)
-		return chars[index]
-	end,
-	padding = { left = 1, right = 1 },
-	color = { fg = colors.yellow },
-	cond = nil,
-})
-
-ins_right({
-	function()
-		return "▊"
-	end,
-	padding = { left = 1, right = 0 },
-})
-
-require("lualine").setup(config)
