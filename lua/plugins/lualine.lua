@@ -4,12 +4,8 @@ local colors = {
 	black = "#080808",
 	white = "#c6c6c6",
 	red = "#ff5189",
-	violet = "#d183e8",
-	grey = "#303030",
-	-- gruv_bg = "#282828",
 	gruv_bg = "#252525",
-	-- gruv_bg_dark = "#252525",
-	gruv_bg_dark = "#282828",
+	gruv_bg_dark = "#413e3d",
 }
 
 local bubbles_theme = {
