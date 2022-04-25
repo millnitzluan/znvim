@@ -131,14 +131,14 @@ local startup = function(use)
 		end,
 	})
 
-	use({
-		"kyazdani42/nvim-web-devicons",
-		event = "VimEnter",
-		config = function()
-			require("plugins.icons")
-		end,
-	})
-
+	-- use({
+	-- 	"kyazdani42/nvim-web-devicons",
+	-- 	event = "VimEnter",
+	-- 	config = function()
+	-- 		require("plugins.icons")
+	-- 	end,
+	-- })
+	--
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	use({
