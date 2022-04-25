@@ -3,18 +3,25 @@
 ## Instalation
 
 Clone the project in `.config` folder
-
-```sh
-
-git clone git@github.com:millnitzluan/znvim.git nvim
-
-```
-
-## Initialization
-
-```sh
-
-nvim +PackerSync'
+
+```sh
+
+
+
+git clone git@github.com:millnitzluan/znvim.git nvim
+
+
+
+```
+
+## Initialization
+
+```sh
+
+
+
+nvim +PackerSync'
+
 
 ```
 
@@ -22,7 +29,6 @@ nvim +PackerSync'
 
 - wbthomason/packer.nvim
 - ellisonleao/gruvbox.nvim
-- christoomey/vim-tmux-navigator
 - christoomey/vim-tmux-navigator
 - nvim-lua/plenary.nvim
 - tpope/vim-surround
@@ -36,3 +42,4 @@ nvim +PackerSync'
 - nvim-telescope/telescope.nvim
 - nvim-telescope/telescope-fzf-native.nvim
 - nvim-treesitter/nvim-treesitter
+- folke/todo-comments.nvim

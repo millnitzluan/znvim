@@ -39,11 +39,7 @@ local startup = function(use)
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
-			require("todo-comments").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
+			require("todo-comments").setup({})
 		end,
 	})
 
@@ -108,21 +104,6 @@ local startup = function(use)
 		"hrsh7th/cmp-nvim-lsp",
 	})
 
-	-- use({
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	requires = {
-	-- 		"onsails/lspkind-nvim",
-	-- 		"hrsh7th/cmp-buffer",
-	-- 		"hrsh7th/cmp-nvim-lsp",
-	-- 		"hrsh7th/cmp-path",
-	-- 		"hrsh7th/cmp-nvim-lua",
-	-- 		"saadparwaiz1/cmp_luasnip",
-	-- 	},
-	-- 	config = function()
-	-- 		require("plugins.cmp")
-	-- 	end,
-	-- })
-	--
 	use({
 		"neovim/nvim-lspconfig",
 		requires = { "williamboman/nvim-lsp-installer" },
@@ -131,14 +112,6 @@ local startup = function(use)
 		end,
 	})
 
-	-- use({
-	-- 	"kyazdani42/nvim-web-devicons",
-	-- 	event = "VimEnter",
-	-- 	config = function()
-	-- 		require("plugins.icons")
-	-- 	end,
-	-- })
-	--
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	use({
