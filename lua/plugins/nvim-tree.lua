@@ -2,6 +2,26 @@ local g = vim.g
 
 g.nvim_tree_indent_markers = 1
 
+vim.g.nvim_tree_icons = {
+	git = {
+		unstaged = "",
+		staged = "",
+		unmerged = "",
+		renamed = "➜",
+		untracked = "",
+		deleted = " ",
+		ignored = "◌",
+	},
+	folder = {
+		default = "",
+		open = "",
+		symlink = "",
+		empty = "",
+		empty_open = "",
+		symlink_open = "",
+	},
+}
+
 require("nvim-tree").setup({
 	filters = {
 		dotfiles = false,
@@ -36,6 +56,7 @@ require("nvim-tree").setup({
 			info = "",
 			warning = "",
 			error = "",
+			a = "ﰂ",
 		},
 	},
 	view = {
