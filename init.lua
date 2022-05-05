@@ -11,6 +11,8 @@ vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
 vim.o.smartindent = true
 
+vim.g.laststatus = 3
+
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
