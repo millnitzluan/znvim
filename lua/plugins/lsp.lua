@@ -105,11 +105,11 @@ null_ls.setup({
 		-- Set a formatter
 		formatting.stylua,
 		formatting.prettierd,
-    formatting.rubocop,
+		formatting.rubocop,
 		-- Set a linter
 		diagnostics.eslint_d,
 		diagnostics.eslint,
-    diagnostics.rubocop,
+		diagnostics.rubocop,
 	},
 	on_attach = cfg.on_attach,
 })

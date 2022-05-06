@@ -1,8 +1,14 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-vim.api.nvim_set_keymap("n", "<Leader>e", "<Cmd>NvimTreeToggle<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>E", "<Cmd>NvimTreeFindFile<CR>", { noremap = true })
+map("", "<Space>", "<Nop>", opts)
+
+-- Close buffer without closing window
+map("n", ",d", ":b#<bar>bd#<CR>", opts)
+
+-- Nvim tree
+map("n", "<Leader>e", "<Cmd>NvimTreeToggle<CR>", { noremap = true })
+map("n", "<leader>E", "<Cmd>NvimTreeFindFile<CR>", { noremap = true })
 
 -- Telescope
 map("n", "<Leader>fe", "<CMD>Telescope grep_string<CR>", opts)

@@ -22,9 +22,6 @@ vim.o.swapfile = false
 vim.o.scrolloff = 10
 vim.o.sidescrolloff = 10
 
-vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", ",d", ":b#<bar>bd#<CR>", { noremap = true, silent = true })
-
 vim.g.mapleader = " "
 
 require("plugins")
