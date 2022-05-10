@@ -34,6 +34,15 @@ local startup = function(use)
 	use("tpope/vim-surround")
 	use({ "folke/lua-dev.nvim" })
 
+	use({
+		"phaazon/hop.nvim",
+		branch = "v1", -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require("hop").setup({})
+		end,
+	})
+
 	-- Lua
 	use({
 		"folke/todo-comments.nvim",

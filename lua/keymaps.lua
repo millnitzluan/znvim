@@ -18,3 +18,6 @@ map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>fk", "<cmd>Telescope buffers<CR>", opts)
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
+
+-- Hop
+map("n", "f", "<cmd>HopWord <CR>", opts)
