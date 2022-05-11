@@ -28,6 +28,7 @@ local startup = function(use)
 		"mnabila/gruvboy.nvim",
 		requires = { "rktjmp/lush.nvim" },
 	})
+	use("joshdick/onedark.vim")
 
 	use("christoomey/vim-tmux-navigator")
 	use("nvim-lua/plenary.nvim")
