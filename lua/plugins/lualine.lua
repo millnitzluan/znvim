@@ -6,21 +6,19 @@ local defaultColors = {
 	red = "#ff5189",
 }
 
--- local gruvboxColors = {
--- 	gruv_bg = "#252525",
--- 	gruv_bg_dark = "#413e3d",
--- }
-
-local onedarkColors = {
-	gruv_bg = "#282C34",
-	gruv_bg_dark = "#4c525e",
+local colors = {
+	-- gruv_bg = "#282C34",
+	-- gruv_bg_dark = "#4c525e",
+	-- gruv_bg = "#252525",
+	gruv_bg = "#282828",
+	gruv_bg_dark = "#413e3d",
 }
 
 local bubbles_theme = {
 	normal = {
-		a = { fg = defaultColors.white, bg = onedarkColors.gruv_bg_dark },
-		b = { fg = defaultColors.white, bg = onedarkColors.gruv_bg_dark },
-		c = { fg = defaultColors.black, bg = onedarkColors.gruv_bg },
+		a = { fg = defaultColors.white, bg = colors.gruv_bg_dark },
+		b = { fg = defaultColors.white, bg = colors.gruv_bg_dark },
+		c = { fg = defaultColors.black, bg = colors.gruv_bg },
 	},
 
 	insert = { a = { fg = defaultColors.black, bg = defaultColors.blue } },
@@ -28,9 +26,9 @@ local bubbles_theme = {
 	replace = { a = { fg = defaultColors.black, bg = defaultColors.red } },
 
 	inactive = {
-		a = { fg = defaultColors.white, bg = onedarkColors.gruv_bg },
-		b = { fg = defaultColors.white, bg = onedarkColors.gruv_bg },
-		c = { fg = defaultColors.black, bg = onedarkColors.gruv_bg },
+		a = { fg = defaultColors.white, bg = colors.gruv_bg },
+		b = { fg = defaultColors.white, bg = colors.gruv_bg },
+		c = { fg = defaultColors.black, bg = colors.gruv_bg },
 	},
 }
 

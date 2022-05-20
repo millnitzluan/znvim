@@ -1,6 +1,6 @@
 vim.opt.termguicolors = true
 vim.o.background = "dark"
-vim.cmd([[colorscheme onedark]])
+vim.cmd([[colorscheme gruvbox]])
 
 vim.o.fileencoding = "utf-8"
 vim.o.syntax = "on"

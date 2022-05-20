@@ -15,6 +15,7 @@ local default_mappings = {
 
 require("telescope").setup({
 	defaults = {
+		file_ignore_patterns = { "node_modules", "yarn.lock" },
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,
