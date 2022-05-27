@@ -1,16 +1,17 @@
 -- bootstrap Packer
 local packer_path = "/site/pack/packer/start/packer.nvim"
 local install_path = vim.fn.stdpath("data") .. packer_path
+
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	local repo = "https://github.com/wbthomason/packer.nvim"
-	local clone = { "git", "clone", "--depth", "1", repo, install_path }
-	PackerBboostraped = vim.fn.system(clone)
+  local repo = "https://github.com/wbthomason/packer.nvim"
+  local clone = { "git", "clone", "--depth", "1", repo, install_path }
+  PackerBboostraped = vim.fn.system(clone)
 end
 
 vim.cmd([[packadd packer.nvim]])
 
 if PackerBboostraped then
-	require("packer").sync()
+  require("packer").sync()
 end
 
 vim.cmd([[
@@ -22,188 +23,192 @@ vim.cmd([[
 
 -- add plugins
 local startup = function(use)
-	use("wbthomason/packer.nvim")
-	use("ellisonleao/gruvbox.nvim")
-	use({
-		"mnabila/gruvboy.nvim",
-		requires = { "rktjmp/lush.nvim" },
-	})
-	use("joshdick/onedark.vim")
+  use("wbthomason/packer.nvim")
+  use("ellisonleao/gruvbox.nvim")
+  use({
+    "mnabila/gruvboy.nvim",
+    requires = { "rktjmp/lush.nvim" },
+  })
+  use("joshdick/onedark.vim")
 
-	use("christoomey/vim-tmux-navigator")
-	use("nvim-lua/plenary.nvim")
-	use("tpope/vim-surround")
-	use({ "folke/lua-dev.nvim" })
+  use("christoomey/vim-tmux-navigator")
+  use("nvim-lua/plenary.nvim")
+  use("tpope/vim-surround")
+  use({ "folke/lua-dev.nvim" })
 
-	use({
-		"phaazon/hop.nvim",
-		branch = "v1", -- optional but strongly recommended
-		config = function()
-			-- you can configure Hop the way you like here; see :h hop-config
-			require("hop").setup({})
-		end,
-	})
+  use({ "ellisonleao/glow.nvim", branch = "main" })
 
-	use({
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup({})
-		end,
-	})
+  use({
+    "phaazon/hop.nvim",
+    branch = "v1", -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require("hop").setup({})
+    end,
+  })
 
-	-- Lua
-	use({
-		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
-	})
+  use("nvim-lua/lsp-status.nvim")
 
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
+  use({
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({})
+    end,
+  })
 
-	use({
-		"lewis6991/gitsigns.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("plugins.gitsigns")
-		end,
-	})
+  -- Lua
+  use({
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup({})
+    end,
+  })
 
-	-- Snippet engine
-	use({
-		"L3MON4D3/LuaSnip",
-		config = function()
-			require("luasnip/loaders/from_vscode").lazy_load()
-		end,
-		requires = {
-			"rafamadriz/friendly-snippets",
-		},
-	})
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup({})
+    end,
+  })
 
-	-- Completion engine
-	use({
-		"hrsh7th/nvim-cmp",
-		event = "BufRead",
-		config = function()
-			require("plugins.cmp")
-		end,
-	})
+  use({
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("plugins.gitsigns")
+    end,
+  })
 
-	-- Snippet completion source
-	use({
-		"saadparwaiz1/cmp_luasnip",
-		after = "nvim-cmp",
-	})
+  -- Snippet engine
+  use({
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip/loaders/from_vscode").lazy_load()
+    end,
+    requires = {
+      "rafamadriz/friendly-snippets",
+    },
+  })
 
-	-- Buffer completion source
-	use({
-		"hrsh7th/cmp-buffer",
-		after = "nvim-cmp",
-	})
+  -- Completion engine
+  use({
+    "hrsh7th/nvim-cmp",
+    event = "BufRead",
+    config = function()
+      require("plugins.cmp")
+    end,
+  })
 
-	-- Path completion source
-	use({
-		"hrsh7th/cmp-path",
-		after = "nvim-cmp",
-	})
+  -- Snippet completion source
+  use({
+    "saadparwaiz1/cmp_luasnip",
+    after = "nvim-cmp",
+  })
 
-	-- LSP completion source
-	use({
-		"hrsh7th/cmp-nvim-lsp",
-	})
+  -- Buffer completion source
+  use({
+    "hrsh7th/cmp-buffer",
+    after = "nvim-cmp",
+  })
 
-	use({
-		"neovim/nvim-lspconfig",
-		requires = { "williamboman/nvim-lsp-installer" },
-		config = function()
-			require("plugins.lsp")
-		end,
-	})
+  -- Path completion source
+  use({
+    "hrsh7th/cmp-path",
+    after = "nvim-cmp",
+  })
 
-	use({ "jose-elias-alvarez/null-ls.nvim" })
+  -- LSP completion source
+  use({
+    "hrsh7th/cmp-nvim-lsp",
+  })
 
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = {
-			"kyazdani42/nvim-web-devicons",
-		},
-		config = function()
-			require("plugins.nvim-tree")
-		end,
-	})
+  use({
+    "neovim/nvim-lspconfig",
+    requires = { "williamboman/nvim-lsp-installer" },
+    config = function()
+      require("plugins.lsp")
+    end,
+  })
 
-	-- Statusline
-	use({
-		"nvim-lualine/lualine.nvim",
-		config = function()
-			require("plugins.lualine")
-		end,
-	})
+  use({ "jose-elias-alvarez/null-ls.nvim" })
 
-	use({
-		"kdheepak/tabline.nvim",
-		config = function()
-			require("plugins.tabline")
-		end,
-		requires = { { "hoob3rt/lualine.nvim", opt = true }, { "kyazdani42/nvim-web-devicons", opt = true } },
-	})
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons",
+    },
+    config = function()
+      require("plugins.nvim-tree")
+    end,
+  })
 
-	use({
-		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-		config = function()
-			require("plugins.telescope")
-		end,
-	})
+  -- Statusline
+  use({
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("plugins.lualine")
+    end,
+  })
 
-	use({
-		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "make",
-	})
+  use({
+    "kdheepak/tabline.nvim",
+    config = function()
+      require("plugins.tabline")
+    end,
+    requires = { { "hoob3rt/lualine.nvim", opt = true }, { "kyazdani42/nvim-web-devicons", opt = true } },
+  })
 
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		event = "BufRead",
-		cmd = {
-			"TSInstall",
-			"TSInstallInfo",
-			"TSInstallSync",
-			"TSUninstall",
-			"TSUpdate",
-			"TSUpdateSync",
-			"TSDisableAll",
-			"TSEnableAll",
-		},
-		config = function()
-			require("plugins.treesitter")
-		end,
-		requires = {
-			{
-				-- Parenthesis highlighting
-				"p00f/nvim-ts-rainbow",
-				after = "nvim-treesitter",
-			},
-			{
-				-- Autoclose tags
-				"windwp/nvim-ts-autotag",
-				after = "nvim-treesitter",
-			},
-			{
-				-- Context based commenting
-				"JoosepAlviste/nvim-ts-context-commentstring",
-				after = "nvim-treesitter",
-			},
-		},
-	})
+  use({
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    config = function()
+      require("plugins.telescope")
+    end,
+  })
+
+  use({
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make",
+  })
+
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    event = "BufRead",
+    cmd = {
+      "TSInstall",
+      "TSInstallInfo",
+      "TSInstallSync",
+      "TSUninstall",
+      "TSUpdate",
+      "TSUpdateSync",
+      "TSDisableAll",
+      "TSEnableAll",
+    },
+    config = function()
+      require("plugins.treesitter")
+    end,
+    requires = {
+      {
+        -- Parenthesis highlighting
+        "p00f/nvim-ts-rainbow",
+        after = "nvim-treesitter",
+      },
+      {
+        -- Autoclose tags
+        "windwp/nvim-ts-autotag",
+        after = "nvim-treesitter",
+      },
+      {
+        -- Context based commenting
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        after = "nvim-treesitter",
+      },
+    },
+  })
 end
 
 -- load plugins

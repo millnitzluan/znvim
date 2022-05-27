@@ -2,95 +2,70 @@ local servers = require("nvim-lsp-installer.servers")
 local null_ls = require("null-ls")
 
 local function on_attach(client, bufnr)
-	local opts = { silent = true, noremap = true }
-	local mappings = {
-		{ "n", "gD", [[<Cmd>lua vim.lsp.buf.declaration()<CR>]], opts },
-		{ "n", "gd", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], opts },
-		{ "n", "gr", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], opts },
-		{
-			"n",
-			"<leader>gR",
-			"<cmd>TroubleToggle lsp_references<CR>",
-			opts,
-		},
-		{
-			"i",
-			"<C-x>",
-			[[<Cmd>lua vim.lsp.buf.signature_help()<CR>]],
-			opts,
-		},
-		{
-			"n",
-			"[e",
-			[[<Cmd>lua vim.diagnostic.goto_next()<CR>]],
-			opts,
-		},
-		{
-			"n",
-			"]e",
-			[[<Cmd>lua vim.diagnostic.goto_prev()<CR>]],
-			opts,
-		},
-	}
+  local opts = { silent = true, noremap = true }
 
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", [[<Cmd>lua vim.lsp.buf.declaration()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gR", "<cmd>TroubleToggle lsp_references<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-x>", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "[e", [[<Cmd>lua vim.diagnostic.goto_next()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "]e", [[<Cmd>lua vim.diagnostic.goto_prev()<CR>]], opts)
 
-	for _, map in pairs(mappings) do
-		vim.api.nvim_buf_set_keymap(bufnr, unpack(map))
-	end
-
-	-- format on save
-	if client.resolved_capabilities.document_formatting then
-		vim.cmd([[
+  -- format on save
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd([[
       augroup LspFormatting
           autocmd! * <buffer>
           autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
       augroup END
       ]])
-	end
+  end
 
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.cmd([[
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd([[
       augroup lsp_document_highlight
       autocmd! * <buffer>
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]])
-	end
+  end
 end
 
 local function make_config()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	capabilities.textDocument.completion.completionItem.resolveSupport = {
-		properties = { "documentation", "detail", "additionalTextEdits" },
-	}
-	capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-	return {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		handlers = {
-			["textDocument/publishDiagnostics"] = vim.lsp.with(
-				vim.lsp.diagnostic.on_publish_diagnostics,
-				{ virtual_text = true }
-			),
-		},
-	}
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+  }
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+  return {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    handlers = {
+      ["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        { virtual_text = true }
+      ),
+    },
+  }
 end
 
 -- lsp servers
 local required_servers = {
-	"sumneko_lua", -- lua
-	"pyright", -- python
-	"tsserver", -- js, jsx, tsx
-	"bashls", -- bash
-	"yamlls", -- yaml
-	"vimls", -- vim
-	"jsonls", -- json
-	"sqlls", -- sql
-	"terraformls", -- terraform
+  "sumneko_lua", -- lua
+  "pyright", -- python
+  "tsserver", -- js, jsx, tsx
+  "bashls", -- bash
+  "yamlls", -- yaml
+  "vimls", -- vim
+  "jsonls", -- json
+  "sqlls", -- sql
+  "terraformls", -- terraform
+  "solargraph", -- ruby
 }
 
 -- default config
@@ -101,49 +76,62 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-	sources = {
-		-- Set a formatter
-		formatting.stylua,
-		formatting.prettierd,
-		formatting.rubocop,
-		-- Set a linter
-		diagnostics.eslint_d,
-		diagnostics.eslint,
-		diagnostics.rubocop,
-	},
-	on_attach = cfg.on_attach,
+  sources = {
+    -- Set a formatter
+    formatting.stylua,
+    formatting.prettierd,
+    -- formatting.rubocop,
+    formatting.rubocop.with({
+      command = "bundle",
+      args = vim.list_extend({ "exec", "rubocop" }, require("null-ls").builtins.diagnostics.rubocop._opts.args),
+    }),
+
+    -- Set a linter
+    diagnostics.eslint_d,
+    diagnostics.eslint,
+    -- diagnostics.rubocop,
+    diagnostics.rubocop.with({
+      command = "bundle",
+      args = vim.list_extend({ "exec", "rubocop" }, require("null-ls").builtins.diagnostics.rubocop._opts.args),
+    }),
+  },
+  on_attach = cfg.on_attach,
 })
 
 -- lua special setup
 local luadev = require("lua-dev").setup({
-	lspconfig = {
-		cmd = {
-			vim.fn.expand("~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"),
-		},
-		Lua = {
-			format = false,
-		},
-		on_attach = cfg.on_attach,
-		capabilities = cfg.capabilities,
-	},
+  lspconfig = {
+    cmd = {
+      vim.fn.expand(
+        "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server",
+        false,
+        false
+      ),
+    },
+    Lua = {
+      format = false,
+    },
+    on_attach = cfg.on_attach,
+    capabilities = cfg.capabilities,
+  },
 })
 
 -- check for missing lsp servers and install them
 for _, svr in pairs(required_servers) do
-	local ok, lsp_server = servers.get_server(svr)
-	if ok then
-		lsp_server:on_ready(function()
-			if svr == "sumneko_lua" then
-				lsp_server:setup(luadev)
-			else
-				lsp_server:setup(cfg)
-			end
-		end)
+  local ok, lsp_server = servers.get_server(svr)
+  if ok then
+    lsp_server:on_ready(function()
+      if svr == "sumneko_lua" then
+        lsp_server:setup(luadev)
+      else
+        lsp_server:setup(cfg)
+      end
+    end)
 
-		if not lsp_server:is_installed() then
-			lsp_server:install()
-		end
-	end
+    if not lsp_server:is_installed() then
+      lsp_server:install()
+    end
+  end
 end
 
 return { config = make_config }
