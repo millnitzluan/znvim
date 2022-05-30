@@ -64,7 +64,6 @@ local required_servers = {
   "vimls", -- vim
   "jsonls", -- json
   "sqlls", -- sql
-  "terraformls", -- terraform
   "solargraph", -- ruby
 }
 
@@ -77,19 +76,14 @@ local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
   sources = {
-    -- Set a formatter
     formatting.stylua,
     formatting.prettierd,
-    -- formatting.rubocop,
     formatting.rubocop.with({
       command = "bundle",
       args = vim.list_extend({ "exec", "rubocop" }, require("null-ls").builtins.diagnostics.rubocop._opts.args),
     }),
-
-    -- Set a linter
     diagnostics.eslint_d,
     diagnostics.eslint,
-    -- diagnostics.rubocop,
     diagnostics.rubocop.with({
       command = "bundle",
       args = vim.list_extend({ "exec", "rubocop" }, require("null-ls").builtins.diagnostics.rubocop._opts.args),
