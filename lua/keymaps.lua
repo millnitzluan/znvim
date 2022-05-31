@@ -16,6 +16,7 @@ map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", opts)
 map("n", "<leader>fs", "<cmd>Telescope git_status<CR>", opts)
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+map("n", "<leader>fh", "<cmd>Telescope find_files hidden=true<CR>", opts)
 map("n", "<leader>fk", "<cmd>Telescope buffers<CR>", opts)
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
 

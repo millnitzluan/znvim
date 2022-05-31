@@ -36,6 +36,7 @@ local startup = function(use)
   use("tpope/vim-surround")
   use({ "folke/lua-dev.nvim" })
 
+  use("tpope/vim-rails")
   use({ "ellisonleao/glow.nvim", branch = "main" })
 
   use({
