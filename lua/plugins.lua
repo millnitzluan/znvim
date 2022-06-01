@@ -38,7 +38,18 @@ local startup = function(use)
 
   use("tpope/vim-rails")
   use({ "ellisonleao/glow.nvim", branch = "main" })
-
+  --
+  -- use({
+  --   "mrjones2014/dash.nvim",
+  --   run = "make install",
+  -- })
+  --
+  use({
+    "mrjones2014/dash.nvim",
+    requires = { "nvim-telescope/telescope.nvim" },
+    run = "make install",
+    disable = not vim.fn.has("macunix"),
+  })
   use({
     "phaazon/hop.nvim",
     branch = "v1", -- optional but strongly recommended
@@ -164,9 +175,14 @@ local startup = function(use)
 
   use({
     "nvim-telescope/telescope.nvim",
+    -- cmd = "Telescope",
+    -- config = function()
+    --   require("plugins.telescope")
+    -- end,
     cmd = "Telescope",
+    module = "telescope",
     config = function()
-      require("plugins.telescope")
+      require("telescope")
     end,
   })
 

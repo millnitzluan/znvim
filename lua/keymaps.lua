@@ -22,3 +22,4 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
 
 -- Hop
 map("n", "f", "<cmd>HopWord <CR>", opts)
+map("n", "fb", "<cmd>lua require('plugins.telescope-pickers').live_grep_in_folder()<CR>", opts)
