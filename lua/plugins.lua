@@ -37,7 +37,21 @@ local startup = function(use)
   use({ "folke/lua-dev.nvim" })
 
   use("tpope/vim-rails")
+  use({
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup({})
+    end,
+  })
   use({ "ellisonleao/glow.nvim", branch = "main" })
+
+  -- optional
+  use({
+    "junegunn/fzf",
+    run = function()
+      vim.fn["fzf#install"]()
+    end,
+  })
 
   use({
     "phaazon/hop.nvim",
