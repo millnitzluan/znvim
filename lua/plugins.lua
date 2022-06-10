@@ -30,7 +30,7 @@ local startup = function(use)
     requires = { "rktjmp/lush.nvim" },
   })
   use("joshdick/onedark.vim")
-
+  use("folke/tokyonight.nvim")
   use("christoomey/vim-tmux-navigator")
   use("nvim-lua/plenary.nvim")
   use("tpope/vim-surround")

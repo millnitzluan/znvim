@@ -8,7 +8,6 @@ local make_entry = require("telescope.make_entry")
 local os_sep = Path.path.sep
 local pickers = require("telescope.pickers")
 local scan = require("plenary.scandir")
-local optss = { noremap = true, silent = true }
 local telescope_pickers = {}
 
 telescope_pickers.live_grep_in_folder = function(opts)
