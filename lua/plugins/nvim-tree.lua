@@ -1,25 +1,5 @@
 local g = vim.g
 
-vim.g.nvim_tree_icons = {
-  git = {
-    unstaged = "",
-    staged = "",
-    unmerged = "",
-    renamed = "➜",
-    untracked = "",
-    deleted = " ",
-    ignored = "◌",
-  },
-  folder = {
-    default = "",
-    open = "",
-    symlink = "",
-    empty = "",
-    empty_open = "",
-    symlink_open = "",
-  },
-}
-
 require("nvim-tree").setup({
   filters = {
     dotfiles = false,
@@ -27,6 +7,29 @@ require("nvim-tree").setup({
       ".git",
       "node_modules",
       ".cache",
+    },
+  },
+  renderer = {
+    icons = {
+      glyphs = {
+        git = {
+          unstaged = "",
+          staged = "",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "",
+          deleted = " ",
+          ignored = "◌",
+        },
+        folder = {
+          default = "",
+          open = "",
+          symlink = "",
+          empty = "",
+          empty_open = "",
+          symlink_open = "",
+        },
+      },
     },
   },
   disable_netrw = true,
