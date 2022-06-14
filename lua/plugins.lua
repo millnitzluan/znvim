@@ -25,12 +25,6 @@ vim.cmd([[
 local startup = function(use)
   use("wbthomason/packer.nvim")
   use("ellisonleao/gruvbox.nvim")
-  use({
-    "mnabila/gruvboy.nvim",
-    requires = { "rktjmp/lush.nvim" },
-  })
-  use("joshdick/onedark.vim")
-  use("folke/tokyonight.nvim")
   use("christoomey/vim-tmux-navigator")
   use("nvim-lua/plenary.nvim")
   use("tpope/vim-surround")

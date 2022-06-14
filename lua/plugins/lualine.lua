@@ -7,9 +7,6 @@ local defaultColors = {
 }
 
 local colors = {
-  -- gruv_bg = "#282C34",
-  -- gruv_bg_dark = "#4c525e",
-  -- gruv_bg = "#252525",
   gruv_bg = "#282828",
   gruv_bg_dark = "#413e3d",
 }
