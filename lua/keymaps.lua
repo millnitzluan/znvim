@@ -19,6 +19,7 @@ map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>fh", "<cmd>Telescope find_files hidden=true<CR>", opts)
 map("n", "<leader>fk", "<cmd>Telescope buffers<CR>", opts)
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
+map("n", "<leader>t", "<cmd>TroubleToggle<CR>", opts)
 
 -- Hop
 map("n", "f", "<cmd>HopWord <CR>", opts)

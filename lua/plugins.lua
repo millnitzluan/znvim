@@ -48,11 +48,14 @@ local startup = function(use)
   })
 
   use({
-    "phaazon/hop.nvim",
-    branch = "v1", -- optional but strongly recommended
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require("hop").setup({})
+      require("trouble").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
     end,
   })
 
