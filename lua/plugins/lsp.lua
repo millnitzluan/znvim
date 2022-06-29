@@ -59,7 +59,7 @@ local required_servers = {
   "sumneko_lua", -- lua
   "pyright", -- python
   "tsserver", -- js, jsx, tsx
-  "bashls", -- bash
+  -- "bashls", -- bash
   "yamlls", -- yaml
   "vimls", -- vim
   "jsonls", -- json

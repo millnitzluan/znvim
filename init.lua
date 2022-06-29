@@ -3,6 +3,7 @@ vim.o.background = "dark"
 
 vim.cmd([[colorscheme gruvbox]])
 
+vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 vim.o.syntax = "on"
 vim.o.number = true

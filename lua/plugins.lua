@@ -166,14 +166,6 @@ local startup = function(use)
   })
 
   use({
-    "kdheepak/tabline.nvim",
-    config = function()
-      require("plugins.tabline")
-    end,
-    requires = { { "hoob3rt/lualine.nvim", opt = true }, { "kyazdani42/nvim-web-devicons", opt = true } },
-  })
-
-  use({
     "nvim-telescope/telescope.nvim",
     -- cmd = "Telescope",
     -- config = function()
