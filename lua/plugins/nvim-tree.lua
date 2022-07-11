@@ -57,7 +57,7 @@ require("nvim-tree").setup({
     },
   },
   view = {
-    width = 50,
+    width = 30,
     height = 30,
     side = "left",
     -- allow_resize = true,
