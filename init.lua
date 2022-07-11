@@ -1,7 +1,7 @@
 vim.opt.termguicolors = true
 vim.o.background = "dark"
 
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme kanagawa]])
 
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"

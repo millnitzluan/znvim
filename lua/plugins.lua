@@ -25,6 +25,7 @@ vim.cmd([[
 local startup = function(use)
   use("wbthomason/packer.nvim")
   use("ellisonleao/gruvbox.nvim")
+  use("rebelot/kanagawa.nvim")
   use("christoomey/vim-tmux-navigator")
   use("nvim-lua/plenary.nvim")
   use("tpope/vim-surround")
