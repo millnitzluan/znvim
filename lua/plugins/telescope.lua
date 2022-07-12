@@ -4,12 +4,13 @@ require("telescope").load_extension("fzf")
 local default_mappings = {
   n = {
     ["Q"] = actions.smart_add_to_qflist + actions.open_qflist,
-    ["q"] = actions.smart_send_to_qflist + actions.open_qflist,
+    ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
     ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
     ["v"] = actions.file_vsplit,
     ["s"] = actions.file_split,
     ["<cr>"] = actions.file_edit,
+    ["q"] = actions.close,
   },
 }
 
@@ -81,6 +82,7 @@ require("telescope").setup({
   },
   pickers = {
     buffers = {
+      theme = "ivy",
       prompt_title = "Search Buffers",
       mappings = vim.tbl_deep_extend("force", {
         i = {
@@ -122,11 +124,20 @@ require("telescope").setup({
           ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
 
           ["<C-c>"] = actions.close,
-          ["<Esc>"] = false,
+          ["<esc>"] = actions.close,
         },
       }, default_mappings),
       sort_mru = true,
       preview_title = false,
+    },
+    find_files = {
+      theme = "dropdown",
+    },
+    oldfiles = {
+      theme = "ivy",
+    },
+    live_grep = {
+      theme = "dropdown",
     },
   },
   extensions = {

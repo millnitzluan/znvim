@@ -175,7 +175,7 @@ local startup = function(use)
     cmd = "Telescope",
     module = "telescope",
     config = function()
-      require("telescope")
+      require("plugins.telescope")
     end,
   })
 
