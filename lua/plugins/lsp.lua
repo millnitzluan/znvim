@@ -78,16 +78,10 @@ null_ls.setup({
   sources = {
     formatting.stylua,
     formatting.prettierd,
-    -- formatting.rubocop.with({
-    --   command = "bundle",
-    --   args = vim.list_extend({ "exec", "rubocop" }, require("null-ls").builtins.diagnostics.rubocop._opts.args),
-    -- }),
+    formatting.rubocop,
     diagnostics.eslint_d,
     diagnostics.eslint,
-    -- diagnostics.rubocop.with({
-    --   command = "bundle",
-    --   args = vim.list_extend({ "exec", "rubocop" }, require("null-ls").builtins.diagnostics.rubocop._opts.args),
-    -- }),
+    diagnostics.rubocop,
   },
   on_attach = cfg.on_attach,
 })

@@ -131,13 +131,13 @@ require("telescope").setup({
       preview_title = false,
     },
     find_files = {
-      theme = "dropdown",
+      theme = "ivy",
     },
     oldfiles = {
       theme = "ivy",
     },
     live_grep = {
-      theme = "dropdown",
+      theme = "ivy",
     },
   },
   extensions = {
