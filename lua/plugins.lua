@@ -31,6 +31,7 @@ local startup = function(use)
   use("tpope/vim-surround")
   use({ "folke/lua-dev.nvim" })
 
+  use("antoinemadec/FixCursorHold.nvim")
   use("tpope/vim-rails")
   use({
     "j-hui/fidget.nvim",

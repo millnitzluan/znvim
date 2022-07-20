@@ -86,6 +86,27 @@ null_ls.setup({
   on_attach = cfg.on_attach,
 })
 
+-- setup diagnostics
+vim.diagnostic.config({ virtual_text = false })
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  callback = function()
+    if vim.lsp.buf.server_ready() then
+      vim.diagnostic.open_float()
+    end
+  end,
+})
+
+-- set up LSP signs
+for type, icon in pairs({
+  Error = "",
+  Warn = "",
+  Hint = "",
+  Info = "",
+}) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
 -- lua special setup
 local luadev = require("lua-dev").setup({
   lspconfig = {

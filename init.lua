@@ -25,6 +25,7 @@ vim.o.scrolloff = 10
 vim.o.sidescrolloff = 10
 
 vim.g.mapleader = " "
+vim.g.cursorhold_updatetime = 100
 
 require("plugins")
 require("keymaps")
