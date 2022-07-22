@@ -11,7 +11,7 @@ vim.o.relativenumber = true
 vim.o.ruler = true
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
-vim.o.smartindent = true
+vim.o.smartindent = false
 
 vim.g.laststatus = 3
 
