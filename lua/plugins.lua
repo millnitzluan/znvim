@@ -30,7 +30,7 @@ local startup = function(use)
   use("nvim-lua/plenary.nvim")
   use("tpope/vim-surround")
   use({ "folke/lua-dev.nvim" })
-
+  use("rust-lang/rust.vim")
   use("antoinemadec/FixCursorHold.nvim")
   use("tpope/vim-rails")
   use({

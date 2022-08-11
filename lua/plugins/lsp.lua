@@ -58,6 +58,7 @@ local required_servers = {
   "jsonls", -- json
   "sqlls", -- sql
   "solargraph", -- ruby
+  "rust_analyzer",
 }
 
 -- default config
@@ -72,6 +73,7 @@ null_ls.setup({
     formatting.stylua,
     formatting.prettierd,
     formatting.rubocop,
+    formatting.rustfmt,
     diagnostics.eslint_d,
     diagnostics.rubocop,
   },
