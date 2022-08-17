@@ -1,7 +1,8 @@
 vim.opt.termguicolors = true
 vim.o.background = "dark"
 
-vim.cmd([[colorscheme kanagawa]])
+-- vim.cmd([[colorscheme onenord]])
+require("onenord").setup()
 
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
