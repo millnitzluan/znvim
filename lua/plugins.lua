@@ -24,6 +24,9 @@ vim.cmd([[
 -- add plugins
 local startup = function(use)
   use("wbthomason/packer.nvim")
+  use("catppuccin/nvim")
+  use("sainnhe/gruvbox-material")
+  use("joshdick/onedark.vim")
   use("ellisonleao/gruvbox.nvim")
   use("rebelot/kanagawa.nvim")
   use("rmehri01/onenord.nvim")

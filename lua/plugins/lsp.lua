@@ -75,7 +75,9 @@ null_ls.setup({
     formatting.rubocop,
     formatting.rustfmt,
     diagnostics.eslint_d,
-    diagnostics.rubocop,
+    diagnostics.rubocop.with({
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    }),
   },
   on_attach = cfg.on_attach,
 })
