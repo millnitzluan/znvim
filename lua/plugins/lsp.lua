@@ -1,5 +1,8 @@
 local servers = require("nvim-lsp-installer.servers")
 local null_ls = require("null-ls")
+local util = require("vim.lsp.util")
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local function on_attach(client, bufnr)
   local opts = { silent = true, noremap = true }
@@ -13,14 +16,19 @@ local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[e", [[<Cmd>lua vim.diagnostic.goto_next()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]e", [[<Cmd>lua vim.diagnostic.goto_prev()<CR>]], opts)
 
-  -- format on save
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd([[
-      augroup LspFormatting
-          autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-      augroup END
-      ]])
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.formatting_seq_sync()
+      end,
+    })
+  end
+
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
   end
 
   -- Set autocommands conditional on server_capabilities
