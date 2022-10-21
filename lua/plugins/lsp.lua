@@ -59,7 +59,6 @@ end
 -- lsp servers
 local required_servers = {
   "sumneko_lua", -- lua
-  "pyright", -- python
   "tsserver", -- js, jsx, tsx
   "yamlls", -- yaml
   "vimls", -- vim
@@ -112,7 +111,7 @@ for type, icon in pairs({
 end
 
 -- lua special setup
-local luadev = require("lua-dev").setup({
+local luadev = require("neodev").setup({
   lspconfig = {
     cmd = {
       vim.fn.expand(

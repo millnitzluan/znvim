@@ -11,11 +11,11 @@ vim.o.background = "dark"
 -- 	-- },
 -- })
 
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+-- vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+--
+-- require("catppuccin").setup()
 
-require("catppuccin").setup()
-
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd([[colorscheme gruvbox]])
 
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"

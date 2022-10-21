@@ -24,7 +24,7 @@ vim.cmd([[
 -- add plugins
 local startup = function(use)
   use("wbthomason/packer.nvim")
-  use("catppuccin/nvim")
+  -- use("catppuccin/nvim")
   use("sainnhe/gruvbox-material")
   use("joshdick/onedark.vim")
   use("ellisonleao/gruvbox.nvim")
@@ -44,6 +44,15 @@ local startup = function(use)
     end,
   })
   use({ "ellisonleao/glow.nvim", branch = "main" })
+  use({
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+      require("catppuccin").setup()
+      -- vim.api.nvim_command("colorscheme catppuccin")
+    end,
+  })
 
   -- optional
   use({
