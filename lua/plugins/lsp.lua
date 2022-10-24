@@ -28,11 +28,11 @@ local function on_attach(client, bufnr)
   end
 
   if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd([[
       augroup lsp_document_highlight
       autocmd! * <buffer>
