@@ -1,3 +1,6 @@
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({})
+
 local servers = require("nvim-lsp-installer.servers")
 local null_ls = require("null-ls")
 local util = require("vim.lsp.util")
@@ -22,7 +25,7 @@ local function on_attach(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.formatting_seq_sync()
+        vim.lsp.buf.format()
       end,
     })
   end
@@ -110,34 +113,12 @@ for type, icon in pairs({
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
--- lua special setup
-local luadev = require("neodev").setup({
-  lspconfig = {
-    cmd = {
-      vim.fn.expand(
-        "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server",
-        false,
-        false
-      ),
-    },
-    Lua = {
-      format = false,
-    },
-    on_attach = cfg.on_attach,
-    capabilities = cfg.capabilities,
-  },
-})
-
 -- check for missing lsp servers and install them
 for _, svr in pairs(required_servers) do
   local ok, lsp_server = servers.get_server(svr)
   if ok then
     lsp_server:on_ready(function()
-      if svr == "sumneko_lua" then
-        lsp_server:setup(luadev)
-      else
-        lsp_server:setup(cfg)
-      end
+      lsp_server:setup(cfg)
     end)
 
     if not lsp_server:is_installed() then

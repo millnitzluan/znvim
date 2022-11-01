@@ -33,7 +33,6 @@ local startup = function(use)
   use("christoomey/vim-tmux-navigator")
   use("nvim-lua/plenary.nvim")
   use("tpope/vim-surround")
-  use({ "folke/lua-dev.nvim" })
   use("rust-lang/rust.vim")
   use("antoinemadec/FixCursorHold.nvim")
   use("tpope/vim-rails")
@@ -43,17 +42,15 @@ local startup = function(use)
       require("fidget").setup({})
     end,
   })
-  use({ "ellisonleao/glow.nvim", branch = "main" })
+
+  use("folke/neodev.nvim")
   use({
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-      vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-      require("catppuccin").setup()
-      -- vim.api.nvim_command("colorscheme catppuccin")
+      require("plugins.colorscheme")
     end,
   })
-
   -- optional
   use({
     "junegunn/fzf",
