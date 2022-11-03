@@ -183,6 +183,7 @@ local startup = function(use)
   -- Statusline
   use({
     "nvim-lualine/lualine.nvim",
+    after = "catppuccin",
     config = function()
       require("plugins.lualine")
     end,
@@ -190,10 +191,6 @@ local startup = function(use)
 
   use({
     "nvim-telescope/telescope.nvim",
-    -- cmd = "Telescope",
-    -- config = function()
-    --   require("plugins.telescope")
-    -- end,
     cmd = "Telescope",
     module = "telescope",
     config = function()

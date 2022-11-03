@@ -1,3 +1,9 @@
+vim.cmd([[
+  set background=dark
+  set termguicolors
+  colorscheme catppuccin
+]])
+
 vim.opt.termguicolors = true
 vim.o.background = "dark"
 
