@@ -1,27 +1,11 @@
 vim.cmd([[
   set background=dark
   set termguicolors
-  colorscheme catppuccin
+  colorscheme megaforest
 ]])
 
 vim.opt.termguicolors = true
 vim.o.background = "dark"
-
--- vim.cmd([[colorscheme onedark]])
-
--- require("onenord").setup({
--- 	-- options = {
--- 	theme = "dark",
--- 	borders = true,
--- 	fade_nc = false,
--- 	-- },
--- })
-
--- vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
---
--- require("catppuccin").setup()
-
-vim.cmd([[colorscheme gruvbox]])
 
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
@@ -46,6 +30,22 @@ vim.o.sidescrolloff = 10
 
 vim.g.mapleader = " "
 vim.g.cursorhold_updatetime = 100
+
+_G.mega = mega
+    or {
+      fn = {},
+      dirs = {},
+      mappings = {},
+      term = {},
+      lsp = {},
+      colors = require("plugins.lush_theme.colors"),
+      icons = require("plugins.icons"),
+      -- original vim.notify: REF: https://github.com/folke/dot/commit/b0f6a2db608cb090b969e2ef5c018b86d11fc4d6
+      notify = vim.notify,
+    }
+
+require("plugins.globals")
+require("plugins.megaline")
 
 require("plugins")
 require("keymaps")

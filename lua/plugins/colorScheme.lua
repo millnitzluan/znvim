@@ -43,5 +43,5 @@ require("catppuccin").setup({
 vim.cmd([[
 set background=dark
 set termguicolors
-colorscheme catppuccin
+" colorscheme catppuccin
 ]])

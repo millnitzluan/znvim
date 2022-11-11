@@ -25,6 +25,7 @@ vim.cmd([[
 local startup = function(use)
   use("wbthomason/packer.nvim")
   -- use("catppuccin/nvim")
+  use("rktjmp/lush.nvim")
   use("sainnhe/gruvbox-material")
   use("joshdick/onedark.vim")
   use("ellisonleao/gruvbox.nvim")
@@ -42,6 +43,8 @@ local startup = function(use)
       require("fidget").setup({})
     end,
   })
+
+  use({ "anuvyklack/hydra.nvim", ext = "hydra" })
 
   use("folke/neodev.nvim")
   use({
@@ -181,13 +184,13 @@ local startup = function(use)
   })
 
   -- Statusline
-  use({
-    "nvim-lualine/lualine.nvim",
-    after = "catppuccin",
-    config = function()
-      require("plugins.lualine")
-    end,
-  })
+  -- use({
+  --   "nvim-lualine/lualine.nvim",
+  --   after = "catppuccin",
+  --   config = function()
+  --     require("plugins.lualine")
+  --   end,
+  -- })
 
   use({
     "nvim-telescope/telescope.nvim",
