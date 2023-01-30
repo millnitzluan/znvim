@@ -157,5 +157,7 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+- [vim-surround](https://github.com/tpope/vim-surround)
 
 ---

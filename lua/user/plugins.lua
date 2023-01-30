@@ -59,6 +59,8 @@ return packer.startup(function(use)
   use { "lukas-reineke/indent-blankline.nvim"}
   use { "goolord/alpha-nvim"}
   use { "dstein64/vim-startuptime" }
+  use { "christoomey/vim-tmux-navigator" }
+  use { "tpope/vim-surround" }
 
   -- Lua
   use {
