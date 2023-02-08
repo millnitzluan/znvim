@@ -23,7 +23,6 @@ require("lazy").setup {
   "akinsho/bufferline.nvim",
   "moll/vim-bbye",
   "nvim-lualine/lualine.nvim",
-  "ahmedkhalf/project.nvim",
   "lewis6991/impatient.nvim",
   "lukas-reineke/indent-blankline.nvim",
   "goolord/alpha-nvim",

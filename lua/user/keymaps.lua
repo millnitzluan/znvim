@@ -50,7 +50,6 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fk", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>/", ":Telescope buffers<CR>", opts)
 keymap("n", "<C-/>", ":Telescope buffers<CR>", opts)
@@ -61,3 +60,9 @@ keymap("n", "<leader>gs", ":Telescope git_status<CR>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Vim Tmux Navigation
+keymap("n", "<C-l>", ":<C-U>TmuxNavigateLeft<CR>")
+keymap("n", "<C-j>", ":<C-U>TmuxNavigateDown<CR>")
+keymap("n", "<C-k>", ":<C-U>TmuxNavigateUp<CR>")
+keymap("n", "<C-h>", ":<C-U>TmuxNavigateRight<CR>")
