@@ -48,10 +48,10 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>sf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>sp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fk", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>/", ":Telescope buffers<CR>", opts)
 keymap("n", "<C-/>", ":Telescope buffers<CR>", opts)
 
