@@ -8,17 +8,18 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
 -- Normal --
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- Vim Tmux Navigation / Better window navigation
+keymap("n", "<C-h>", ":<C-U>TmuxNavigateLeft<CR>")
+keymap("n", "<C-j>", ":<C-U>TmuxNavigateDown<CR>")
+keymap("n", "<C-k>", ":<C-U>TmuxNavigateUp<CR>")
+keymap("n", "<C-l>", ":<C-U>TmuxNavigateRight<CR>")
 
 -- Navigate buffers
 keymap("n", "<C-n>", ":bnext<CR>", opts)
@@ -32,6 +33,9 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
+
+-- Close buffer without closing window
+keymap("n", "<leader>d", ":Bdelete<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
@@ -60,9 +64,3 @@ keymap("n", "<leader>gs", ":Telescope git_status<CR>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-
--- Vim Tmux Navigation
-keymap("n", "<C-l>", ":<C-U>TmuxNavigateLeft<CR>")
-keymap("n", "<C-j>", ":<C-U>TmuxNavigateDown<CR>")
-keymap("n", "<C-k>", ":<C-U>TmuxNavigateUp<CR>")
-keymap("n", "<C-h>", ":<C-U>TmuxNavigateRight<CR>")
