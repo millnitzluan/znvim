@@ -29,7 +29,7 @@ require("lazy").setup {
   "dstein64/vim-startuptime",
   "christoomey/vim-tmux-navigator",
   "tpope/vim-surround",
-  "folke/which-key.nvim",
+  { "folke/which-key.nvim", lazy = false },
 
   -- Colorschemes
   "folke/tokyonight.nvim",
