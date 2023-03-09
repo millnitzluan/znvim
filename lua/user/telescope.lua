@@ -6,13 +6,19 @@ end
 local actions = require "telescope.actions"
 
 telescope.setup {
+  extensions = {
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+    },
+  },
   defaults = {
-
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
     file_ignore_patterns = { ".git/", "node_modules" },
-
     mappings = {
       i = {
         ["<Down>"] = actions.cycle_history_next,
@@ -23,3 +29,5 @@ telescope.setup {
     },
   },
 }
+
+require('telescope').load_extension('fzf')
