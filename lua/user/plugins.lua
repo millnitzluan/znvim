@@ -46,7 +46,23 @@ require("lazy").setup {
   -- Colorschemes
   "folke/tokyonight.nvim",
   "LunarVim/horizon.nvim",
-  "rebelot/kanagawa.nvim",
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup {
+        theme = "dragon",
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+          },
+        },
+      }
+    end,
+  },
 
   -- cmp plugins
   "hrsh7th/nvim-cmp",
