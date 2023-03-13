@@ -27,7 +27,6 @@ require("lazy").setup {
   "nvim-lualine/lualine.nvim",
   "lewis6991/impatient.nvim",
   "lukas-reineke/indent-blankline.nvim",
-  "goolord/alpha-nvim",
   "dstein64/vim-startuptime",
   "christoomey/vim-tmux-navigator",
   "tpope/vim-surround",

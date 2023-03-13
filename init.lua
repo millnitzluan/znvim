@@ -15,7 +15,4 @@ require "user.bufferline"
 require "user.lualine"
 require "user.illuminate"
 require "user.indentline"
-require "user.alpha"
-
-
 require "user.lsp"
