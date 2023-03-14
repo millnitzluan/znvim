@@ -86,6 +86,7 @@ require("lazy").setup {
   "jose-elias-alvarez/null-ls.nvim",
   "RRethy/vim-illuminate",
   "folke/neodev.nvim",
+  { "j-hui/fidget.nvim", event = "BufEnter" },
 
   -- Telescope
   {

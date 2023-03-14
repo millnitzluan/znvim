@@ -16,3 +16,4 @@ require "user.lualine"
 require "user.illuminate"
 require "user.indentline"
 require "user.lsp"
+require("fidget").setup {}
