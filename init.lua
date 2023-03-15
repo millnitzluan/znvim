@@ -1,9 +1,11 @@
+vim.cmd.colorscheme("fallback")
+
 require "user.plugins"
 require "user.impatient"
 require "user.options"
 require "user.keymaps"
 require "user.autocommands"
-require "user.colorscheme"
+require "user.fidget"
 require "user.cmp"
 require "user.telescope"
 require "user.gitsigns"
