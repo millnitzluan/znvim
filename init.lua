@@ -1,6 +1,7 @@
-vim.cmd.colorscheme("fallback")
-
 require "user.plugins"
+
+vim.cmd.colorscheme("kanagawa")
+
 require "user.impatient"
 require "user.options"
 require "user.keymaps"

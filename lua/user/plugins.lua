@@ -47,6 +47,7 @@ require("lazy").setup {
   "LunarVim/horizon.nvim",
   {
     "rebelot/kanagawa.nvim",
+    lazy = false,
     config = function()
       require("kanagawa").setup {
         theme = "dragon",
