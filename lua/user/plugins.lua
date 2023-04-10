@@ -42,7 +42,21 @@ require("lazy").setup {
       }
     end,
   },
-
+  {
+    "nathom/filetype.nvim",
+    lazy = false,
+    config = function()
+      require("filetype").setup {
+        overrides = {
+          extensions = {
+            tf = "terraform",
+            tfvars = "terraform",
+            tfstate = "json",
+          },
+        },
+      }
+    end,
+  },
   {
     "anuvyklack/windows.nvim",
     dependencies = {
@@ -116,7 +130,12 @@ require("lazy").setup {
   },
 
   -- Treesitter
-  "nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "mitchellh/tree-sitter-hcl",
+    },
+  },
 
   -- Git
   "lewis6991/gitsigns.nvim",

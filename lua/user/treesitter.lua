@@ -8,6 +8,16 @@ if not status_ok then
   return
 end
 
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.hcl = {
+  install_info = {
+    url = vim.fn.stdpath "data" .. "/site/pack/packer/start/tree-sitter-hcl",
+    files = { "src/parser.c", "src/scanner.cc" },
+  },
+  used_by = { "terraform" },
+}
+
 configs.setup {
   -- ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
   -- ensure_installed = "all", -- one of "all" or a list of languages

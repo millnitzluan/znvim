@@ -1,6 +1,6 @@
 require "user.plugins"
 
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme "kanagawa"
 
 require "user.impatient"
 require "user.options"
@@ -19,4 +19,15 @@ require "user.lualine"
 require "user.illuminate"
 require "user.indentline"
 require "user.lsp"
+
 require("fidget").setup {}
+
+require("filetype").setup {
+  overrides = {
+    extensions = {
+      tf = "terraform",
+      tfvars = "terraform",
+      tfstate = "json",
+    },
+  },
+}
