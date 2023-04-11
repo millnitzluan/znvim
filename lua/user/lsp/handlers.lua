@@ -5,6 +5,8 @@ if not status_cmp_ok then
   return
 end
 
+local group = vim.api.nvim_create_augroup("LSP", { clear = true })
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
@@ -79,6 +81,19 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+local is_alive = function(client)
+  if client == nil then
+    return false
+  end
+  if not client.initialized then
+    return false
+  end
+  if client.is_stopped() then
+    return false
+  end
+  return true
+end
+
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
@@ -86,6 +101,28 @@ M.on_attach = function(client, bufnr)
 
   if client.name == "lua_ls" then
     client.server_capabilities.documentFormattingProvider = false
+  end
+
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      buffer = bufnr,
+      callback = function()
+        if is_alive(client) then
+          vim.lsp.buf.document_highlight()
+        end
+      end,
+      group = group,
+    })
+
+    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+      buffer = bufnr,
+      callback = function()
+        if is_alive(client) then
+          vim.lsp.buf.clear_references()
+        end
+      end,
+      group = group,
+    })
   end
 
   lsp_keymaps(bufnr)
