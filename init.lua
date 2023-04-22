@@ -1,6 +1,6 @@
 require "user.plugins"
 
-vim.cmd.colorscheme "kanagawa"
+vim.cmd.colorscheme "catppuccin-mocha"
 
 require "user.impatient"
 require "user.options"
