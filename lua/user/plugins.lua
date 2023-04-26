@@ -26,7 +26,21 @@ require("lazy").setup {
   "moll/vim-bbye",
   "nvim-lualine/lualine.nvim",
   "lewis6991/impatient.nvim",
-  -- "lukas-reineke/indent-blankline.nvim",
+  {
+    "jinh0/eyeliner.nvim",
+    config = function()
+      require("eyeliner").setup {
+        highlight_on_key = true, -- show highlights only after keypress
+        dim = false, -- dim all other characters if set to true (recommended!)
+      }
+    end,
+  },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -51,11 +65,11 @@ require("lazy").setup {
           types = {},
         },
         color_overrides = {
-          mocha = {
-            base = "#000000",
-            mantle = "#000000",
-            crust = "#000000",
-          },
+          -- mocha = {
+          --   base = "#000000",
+          --   mantle = "#000000",
+          --   crust = "#000000",
+          -- },
         },
         highlight_overrides = {
           mocha = function(C)

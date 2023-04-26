@@ -7,6 +7,9 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
+
+vim.api.nvim_set_keymap('n', '<space>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+
 -- Normal --
 
 -- Resize with arrows
