@@ -2,6 +2,7 @@ require "user.plugins"
 
 vim.cmd.colorscheme "catppuccin-mocha"
 
+require("lsp-inlayhints").setup()
 require "user.impatient"
 require "user.options"
 require "user.keymaps"
@@ -21,7 +22,6 @@ require "user.indentline"
 require "user.lsp"
 
 require("fidget").setup {}
-
 require("filetype").setup {
   overrides = {
     extensions = {
