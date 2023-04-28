@@ -2,7 +2,6 @@ require "user.plugins"
 
 vim.cmd.colorscheme "catppuccin-mocha"
 
-require("lsp-inlayhints").setup()
 require "user.impatient"
 require "user.options"
 require "user.keymaps"
