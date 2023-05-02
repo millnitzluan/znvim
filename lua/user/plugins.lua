@@ -449,7 +449,6 @@ require("lazy").setup {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    version = false,
     lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
