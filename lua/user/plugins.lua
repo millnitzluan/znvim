@@ -23,6 +23,7 @@ require("lazy").setup {
   "kyazdani42/nvim-tree.lua",
   "moll/vim-bbye",
   "lewis6991/impatient.nvim",
+  "Yazeed1s/oh-lucy.nvim",
   {
     "akinsho/bufferline.nvim",
     enabled = true,
