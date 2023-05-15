@@ -25,6 +25,16 @@ require("lazy").setup {
   "lewis6991/impatient.nvim",
   "Yazeed1s/oh-lucy.nvim",
   {
+    "sainnhe/gruvbox-material",
+    enabled = false,
+    priority = 1000,
+    config = function()
+      vim.o.background = "dark"
+      vim.g.gruvbox_material_background = "hard"
+      vim.cmd.colorscheme "gruvbox-material"
+    end,
+  },
+  {
     "akinsho/bufferline.nvim",
     enabled = true,
     event = "VimEnter",
