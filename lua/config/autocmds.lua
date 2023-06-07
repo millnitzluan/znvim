@@ -3,11 +3,11 @@ local api = vim.api
 -- don't auto comment new line
 api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
-api.nvim_create_autocmd("VimEnter", {
-  callback = function ()
-    vim.cmd("silent! lua require('telescope.builtin').find_files()")
-  end
-})
+-- api.nvim_create_autocmd("VimEnter", {
+--   callback = function ()
+--     vim.cmd("silent! lua require('telescope.builtin').find_files()")
+--   end
+-- })
 
 --- Remove all trailing whitespace on save
 local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })

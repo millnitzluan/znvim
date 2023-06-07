@@ -14,9 +14,11 @@ return {
         formatting.terraform_fmt,
         formatting.black.with({ extra_args = { "--fast" } }),
         formatting.stylua,
+        formatting.rubocop,
         formatting.google_java_format,
         diagnostics.flake8,
         diagnostics.eslint_d,
+        diagnostics.rubocop,
       },
     })
   end,
