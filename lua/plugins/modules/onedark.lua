@@ -4,6 +4,6 @@ return {
   enabled = true,
   config = function()
     require("onedarkpro").setup()
-    vim.cmd("colorscheme onedark")
+    vim.cmd("colorscheme onedark_vivid")
   end,
 }
