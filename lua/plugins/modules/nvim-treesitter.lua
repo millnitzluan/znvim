@@ -5,9 +5,7 @@ return {
     build = ":TSUpdate",
     lazy = false,
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-    },
+    enabled = true,
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
         vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
@@ -24,26 +22,19 @@ return {
         auto_install = true,
         ensure_installed = {
           "bash",
-          "c",
           "html",
           "javascript",
           "json",
           "lua",
-          "luadoc",
-          "luap",
           "markdown",
           "markdown_inline",
-          "python",
-          "query",
           "regex",
           "tsx",
           "typescript",
           "vim",
-          "vimdoc",
           "yaml",
           "ruby",
           "rust",
-          "go"
         },
         incremental_selection = {
           enable = true,
