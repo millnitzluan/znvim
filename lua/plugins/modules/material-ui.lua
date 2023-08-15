@@ -1,6 +1,6 @@
 return {
   "marko-cerovac/material.nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   config = function()
     require("material").setup({})
