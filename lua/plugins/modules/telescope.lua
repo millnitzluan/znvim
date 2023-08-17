@@ -1,20 +1,33 @@
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
     -- version = '0.1.0',
     lazy = true,
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
-      local telescope = require('telescope')
-      telescope.setup {
+      local telescope = require("telescope")
+      local telescopeConfig = require("telescope.config")
+
+      -- Clone the default Telescope configuration
+      local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+      -- I want to search in hidden/dot files.
+      table.insert(vimgrep_arguments, "--hidden")
+      -- I don't want to search in the `.git` directory.
+      table.insert(vimgrep_arguments, "--glob")
+      table.insert(vimgrep_arguments, "!**/.git/*")
+
+      telescope.setup({
         defaults = {
           previewer = false,
           hidden = true,
+          -- `hidden = true` is not supported in text grep commands.
+          vimgrep_arguments = vimgrep_arguments,
           file_ignore_patterns = { "node_modules", "package-lock.json" },
           initial_mode = "insert",
           select_strategy = "reset",
@@ -30,6 +43,8 @@ return {
         pickers = {
           find_files = {
             previewer = false,
+            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
           },
           git_files = {
             previewer = false,
@@ -73,29 +88,29 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true,                   -- false will only do exact matching
+            fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true,    -- override the file sorter
-            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           },
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({
-              previewer        = false,
-              initial_mode     = "normal",
-              sorting_strategy = 'ascending',
-              layout_strategy  = 'horizontal',
-              layout_config    = {
+              previewer = false,
+              initial_mode = "normal",
+              sorting_strategy = "ascending",
+              layout_strategy = "horizontal",
+              layout_config = {
                 horizontal = {
                   width = 0.5,
                   height = 0.4,
                   preview_width = 0.6,
                 },
               },
-            })
+            }),
           },
-        }
-      }
-      telescope.load_extension('fzf')
-    end
+        },
+      })
+      telescope.load_extension("fzf")
+    end,
   },
 }
