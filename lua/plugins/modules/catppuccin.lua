@@ -1,6 +1,6 @@
 return {
   "catppuccin/nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   priority = 150,
   name = "catppuccin",
@@ -9,7 +9,7 @@ return {
 
     require("catppuccin").setup({
       transparent_background = true,
-      -- term_colors = true,
+      term_colors = true,
       integrations = {
         treesitter = true,
         native_lsp = {
