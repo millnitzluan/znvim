@@ -1,42 +1,55 @@
 return {
   "catppuccin/nvim",
-  enabled = false,
+  enabled = true,
   lazy = false,
   priority = 150,
   name = "catppuccin",
   config = function()
-    vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-
     require("catppuccin").setup({
-      transparent_background = true,
-      term_colors = true,
+      flavour = "mocha",
+      color_overrides = {
+        mocha = {
+          base = "#000000",
+          mantle = "#000000",
+          crust = "#000000",
+        },
+      },
+      highlight_overrides = {
+        mocha = function(C)
+          return {
+            TabLineSel = { bg = C.pink },
+            TelescopeBorder = { link = "FloatBorder" },
+          }
+        end,
+      },
       integrations = {
-        treesitter = true,
+        cmp = true,
+        dap = {
+          enabled = true,
+          enable_ui = true,
+        },
+        gitsigns = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = true,
+        },
+        markdown = true,
         native_lsp = {
           enabled = true,
-          virtual_text = {
-            errors = { "italic" },
-            hints = { "italic" },
-            warnings = { "italic" },
-            information = { "italic" },
-          },
-          underlines = {
-            errors = { "underline" },
-            hints = { "underline" },
-            warnings = { "underline" },
-            information = { "underline" },
-          },
         },
-        lsp_trouble = false,
-        cmp = true,
-        gitsigns = true,
+        neogit = true,
+        neotree = true,
+        notify = true,
+        nvimtree = true,
         telescope = true,
-        nvimtree = { enabled = true, show_root = true, transparent_panel = false },
-        markdown = true,
-        ts_rainbow = true,
+        harpoon = true,
+        treesitter = true,
+        treesitter_context = true,
+        which_key = true,
+        lsp_trouble = true,
       },
     })
 
-    vim.cmd([[colorscheme catppuccin]])
+    vim.cmd.colorscheme("catppuccin")
   end,
 }

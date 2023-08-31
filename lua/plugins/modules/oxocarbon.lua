@@ -1,7 +1,7 @@
 return {
   "nyoom-engineering/oxocarbon.nvim",
   lazy = false,
-  enabled = true,
+  enabled = false,
   config = function ()
     vim.cmd.colorscheme "oxocarbon"
   end
