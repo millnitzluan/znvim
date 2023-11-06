@@ -1,19 +1,12 @@
 return {
   "catppuccin/nvim",
-  enabled = false,
+  enabled = true,
   lazy = false,
   priority = 150,
   name = "catppuccin",
   config = function()
     require("catppuccin").setup({
-      flavour = "mocha",
-      color_overrides = {
-        -- mocha = {
-        --   base = "#000000",
-        --   mantle = "#000000",
-        --   crust = "#000000",
-        -- },
-      },
+      flavour = "macchiato",
       highlight_overrides = {
         mocha = function(C)
           return {
@@ -46,7 +39,6 @@ return {
         treesitter = true,
         treesitter_context = true,
         which_key = true,
-        lsp_trouble = true,
       },
     })
 
