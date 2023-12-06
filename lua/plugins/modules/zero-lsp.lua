@@ -16,10 +16,8 @@ return {
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
       -- Autocompletion
-      { "hrsh7th/nvim-cmp" }, -- Required
+      { "hrsh7th/nvim-cmp" },     -- Required
       { "hrsh7th/cmp-nvim-lsp" }, -- Required
-      { "L3MON4D3/LuaSnip" }, -- Required
-
       { "onsails/lspkind.nvim" },
     },
     config = function()
@@ -54,7 +52,6 @@ return {
       local cmp = require("cmp")
       local lspkind = require("lspkind")
       local icons = require("config.icons")
-      local luasnip = require("luasnip")
       local cmp_mapping = require("cmp.config.mapping")
       local cmp_types = require("cmp.types.cmp")
       local utils = require("plugins.utils")
@@ -88,7 +85,6 @@ return {
               path = "(Path)",
               calc = "(Calc)",
               vsnip = "(Snippet)",
-              luasnip = "(Snippet)",
               buffer = "(Buffer)",
               tmux = "(TMUX)",
               copilot = "(Copilot)",
@@ -98,14 +94,8 @@ return {
               buffer = 1,
               path = 1,
               nvim_lsp = 0,
-              luasnip = 1,
             })[entry.source.name] or 0
             return vim_item
-          end,
-        },
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -158,7 +148,6 @@ return {
           },
 
           { name = "path" },
-          { name = "luasnip" },
           { name = "nvim_lua" },
           { name = "buffer" },
           { name = "calc" },
@@ -191,10 +180,6 @@ return {
           ["<Tab>"] = cmp_mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            elseif utils.jumpable(1) then
-              luasnip.jump(1)
             elseif utils.has_words_before() then
               -- cmp.complete()
               fallback()
@@ -205,8 +190,6 @@ return {
           ["<S-Tab>"] = cmp_mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
             else
               fallback()
             end
