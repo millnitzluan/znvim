@@ -1,7 +1,7 @@
 return {
   "rebelot/kanagawa.nvim",
   lazy = false,
-  enabled = false,
+  enabled = true,
   config = function()
     -- Default options:
     require("kanagawa").setup({

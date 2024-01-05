@@ -8,6 +8,18 @@ return {
     local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
 
+    -- Set eslint_d as default linter
+
+    null_ls.builtins.diagnostics.eslint_d.with({
+      only_local = "node_modules/.bin"
+    })
+
+    -- Set eslint_d as default code actions
+
+    null_ls.builtins.code_actions.eslint_d.with({
+      only_local = "node_modules/.bin"
+    })
+
     null_ls.setup({
       debug = false,
       sources = {
@@ -19,6 +31,7 @@ return {
         formatting.google_java_format,
         diagnostics.flake8,
         -- diagnostics.eslint,
+        diagnostics.eslint_d,
         diagnostics.rubocop,
       },
     })
