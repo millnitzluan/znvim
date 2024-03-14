@@ -6,17 +6,26 @@ return {
     lazy = false,
     event = { "BufReadPost", "BufNewFile" },
     enabled = true,
+    dependencies = {
+      "windwp/nvim-ts-autotag",
+    },
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
         vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
       end
     end,
-    config = function ()
-      require("nvim-treesitter.configs").setup {
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        autotag = {
+          enable = true,
+          enable_rename = true,
+          enable_close = true,
+          enable_close_on_slash = true,
+        },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
-         },
+        },
         auto_install = true,
         ensure_installed = {
           "bash",
@@ -86,7 +95,7 @@ return {
             },
           },
         },
-      }
-    end
+      })
+    end,
   },
 }

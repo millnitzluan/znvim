@@ -12,6 +12,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local telescopeConfig = require("telescope.config")
+      local _actions_setup, actions = pcall(require, "telescope.actions")
 
       -- Clone the default Telescope configuration
       local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
@@ -38,6 +39,14 @@ return {
             height = 0.4,
             prompt_position = "top",
             preview_cutoff = 120,
+          },
+          mappings = {
+            n = {
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+              ["<C-p>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
           },
         },
         pickers = {
