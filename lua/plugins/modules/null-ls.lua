@@ -10,15 +10,15 @@ return {
 
     -- Set eslint_d as default linter
 
-    null_ls.builtins.diagnostics.eslint_d.with({
-      only_local = "node_modules/.bin"
-    })
+    -- null_ls.builtins.diagnostics.eslint_d.with({
+    --   only_local = "node_modules/.bin"
+    -- })
 
     -- Set eslint_d as default code actions
 
-    null_ls.builtins.code_actions.eslint_d.with({
-      only_local = "node_modules/.bin"
-    })
+    -- null_ls.builtins.code_actions.eslint_d.with({
+    --   only_local = "node_modules/.bin"
+    -- })
 
     null_ls.setup({
       debug = false,
