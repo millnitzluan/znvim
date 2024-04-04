@@ -1,7 +1,7 @@
 return {
   {
     "akinsho/bufferline.nvim",
-    enabled = false,
+    enabled = true,
     event = "VimEnter",
     lazy = true,
     config = function()
