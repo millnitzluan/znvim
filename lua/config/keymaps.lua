@@ -32,3 +32,4 @@ vim.keymap.set('n', '<Leader>q', ':q!<CR>', { silent = true })
 -- Exit on jj and jk
 vim.keymap.set('i', 'jj', '<ESC>')
 vim.keymap.set('i', 'jk', '<ESC>')
+

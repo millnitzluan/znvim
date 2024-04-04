@@ -8,6 +8,9 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+      },
     },
     config = function()
       local telescope = require("telescope")
@@ -119,6 +122,13 @@ return {
           },
         },
       })
+
+      vim.keymap.set(
+        "n",
+        "<leader>sd",
+        require("telescope").extensions.live_grep_args.live_grep_args,
+        { noremap = true }
+      )
       telescope.load_extension("fzf")
     end,
   },
