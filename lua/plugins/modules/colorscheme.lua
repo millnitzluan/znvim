@@ -23,7 +23,7 @@ return {
       vim.api.nvim_set_hl(0, "NavicText", { default = true, bg = "none", fg = "#eedaad" })
       vim.api.nvim_set_hl(0, "NavicSeparator", { default = true, bg = "none", fg = "#eedaad" })
       --
-      vim.api.nvim_command("colorscheme catppuccin-macchiato")
+      vim.api.nvim_command("colorscheme catppuccin-mocha")
     end,
   },
   {
