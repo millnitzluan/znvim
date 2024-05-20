@@ -380,18 +380,17 @@ return {
   {
     "tiagovla/tokyodark.nvim",
     lazy = false,
-    enabled = true,
+    enabled = false,
     opts = {},
     config = function(_, opts)
       require("tokyodark").setup(opts) -- calling setup is optional
       vim.cmd([[colorscheme tokyodark]])
     end,
   },
-
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    enabled = false,
+    enabled = true,
     config = function()
       require("tokyonight").setup({
         style = "moon",         -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
@@ -416,6 +415,28 @@ return {
       })
 
       vim.cmd([[colorscheme tokyonight]])
+    end,
+  },
+  {
+    "comfysage/evergarden",
+    lazy = false,
+    enabled = false,
+    config = function()
+      require("evergarden").setup({
+        transparent_background = false,
+        contrast_dark = "hard", -- 'hard'|'medium'|'soft'
+        override_terminal = true,
+        style = {
+          tabline = { reverse = true, color = "green" },
+          search = { reverse = false, inc_reverse = true },
+          types = { italic = true },
+          keyword = { italic = true },
+          comment = { italic = false },
+        },
+        overrides = {}, -- add custom overrides
+      })
+
+      vim.cmd([[colorscheme evergarden]])
     end,
   },
 }
