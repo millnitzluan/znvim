@@ -78,7 +78,7 @@ return {
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename all references" },
     f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
     K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
-    l = { "<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics (Trouble)" },
+    l = { "<cmd>Trouble diagnostics<cr>", "Document Diagnostics (Trouble)" },
     L = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics (Trouble)" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
     t = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
