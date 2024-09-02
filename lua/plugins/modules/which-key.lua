@@ -64,11 +64,11 @@ return {
     config = function(_, opts)
         local which_key = require("which-key")
         which_key.setup(opts)
-        which_key.register(require("config.which_key_defaults"), {
+        which_key.add(require("config.which_key_defaults"), {
             mode = "n",
             prefix = "<leader>",
         })
 
-        which_key.register(require("config.which_key_non_leader"))
+        which_key.add(require("config.which_key_non_leader"))
     end,
 }
