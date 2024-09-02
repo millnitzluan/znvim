@@ -1,7 +1,7 @@
 return {
   "LazyVim/LazyVim",
   opts = {
-    colorscheme = "kanagawa",
+    colorscheme = "moonfly",
     defaults = {
       autocmds = true, -- lazyvim.config.autocmds
       keymaps = false,  -- lazyvim.config.keymaps

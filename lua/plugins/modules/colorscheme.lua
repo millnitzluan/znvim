@@ -1,10 +1,11 @@
 return {
+	{ "bluz71/vim-moonfly-colors", enabled = true, name = "moonfly", lazy = false, priority = 1000 },
 	{
 		"rebelot/kanagawa.nvim",
 		opts = {
 			-- custom options here
 		},
-		enabled = true,
+		enabled = false,
 		config = function(_, opts)
 			require("kanagawa").setup({
 				colors = {
