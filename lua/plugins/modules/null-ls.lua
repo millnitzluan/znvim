@@ -23,8 +23,8 @@ return {
     null_ls.setup({
       debug = false,
       sources = {
-        formatting.prettierd,
-        -- formatting.biome,
+        formatting.prettier,
+        formatting.biome,
         formatting.terraform_fmt,
         formatting.black.with({ extra_args = { "--fast" } }),
         formatting.stylua,

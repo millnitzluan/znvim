@@ -22,9 +22,19 @@ return {
           enable_close = true,
           enable_close_on_slash = true,
         },
+        -- highlight = {
+        --   enable = true,
+        --   additional_vim_regex_highlighting = false,
+        -- },
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false,
+          disable = function(_, buf)
+            local max_filesize = 240 * 1024
+            local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
         },
         auto_install = true,
         ensure_installed = {
@@ -71,12 +81,12 @@ return {
               ["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
             },
             selection_modes = {
-              ["@parameter.outer"] = "v", -- charwise
-              ["@parameter.inner"] = "v", -- charwise
-              ["@function.outer"] = "v", -- charwise
+              ["@parameter.outer"] = "v",   -- charwise
+              ["@parameter.inner"] = "v",   -- charwise
+              ["@function.outer"] = "v",    -- charwise
               ["@conditional.outer"] = "V", -- linewise
-              ["@loop.outer"] = "V", -- linewise
-              ["@class.outer"] = "<c-v>", -- blockwise
+              ["@loop.outer"] = "V",        -- linewise
+              ["@class.outer"] = "<c-v>",   -- blockwise
             },
             include_surrounding_whitespace = false,
           },
@@ -93,6 +103,31 @@ return {
               ["]c"] = { query = "@class.outer", desc = "Next class" },
               ["]p"] = { query = "@parameter.inner", desc = "Next parameter" },
             },
+          },
+        },
+      })
+
+      require("nvim-ts-autotag").setup({
+        -- Defaults
+        enable = true,
+        filetypes = {
+          "html",
+          "javascriptreact",
+          "javascript",
+          "typescript",
+          "typescriptreact",
+          "tsx",
+          "jsx",
+        },
+        enable_close = true,     -- Auto close tags
+        enable_rename = true,    -- Auto rename pairs of tags
+        enable_close_on_slash = false, -- Auto close on trailing </
+        -- Also override individual filetype configs, these take priority.
+        -- Empty by default, useful if one of the "opts" global settings
+        -- doesn't work well in a specific filetype
+        per_filetype = {
+          ["html"] = {
+            enable_close = false,
           },
         },
       })

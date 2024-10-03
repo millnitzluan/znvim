@@ -85,7 +85,7 @@ return {
       })
 
       require('mason-lspconfig').setup({
-        ensure_installed = { 'solargraph', 'tsserver' },
+        ensure_installed = { 'solargraph', 'ts_ls' },
         handlers = {
           -- this first function is the "default handler"
           -- it applies to every language server without a "custom handler"
@@ -94,6 +94,26 @@ return {
           end,
         }
       })
+
+      local lspconfig = require('lspconfig')
+
+      -- lspconfig.tsserver.setup {
+      --   capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      --   on_attach = function(client, bufnr)
+      --     -- Desativa a formatação do tsserver
+      --     client.capabilities.document_formatting = false
+      --     client.capabilities.document_range_formatting = false
+      --   end,
+      -- }
+
+      lspconfig.ts_ls.setup {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        on_attach = function(client, bufnr)
+          -- Desativa a formatação do tsserver
+          client.capabilities.document_formatting = false
+          client.capabilities.document_range_formatting = false
+        end,
+      }
     end
   }
 }
