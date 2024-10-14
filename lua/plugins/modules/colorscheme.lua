@@ -1,5 +1,23 @@
 return {
-	{ "bluz71/vim-moonfly-colors", enabled = true, name = "moonfly", lazy = false, priority = 1000 },
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
+		priority = 1000,
+		enabled = true,
+		config = function()
+			require("cyberdream").setup({
+				transparent = true,
+				italic_comments = false,
+				hide_fillchars = false,
+				borderless_telescope = true,
+				terminal_colors = true,
+				cache = false,
+
+				-- vim.api.nvim_command("colorscheme cyberdream")
+			})
+		end,
+	},
+	{ "bluz71/vim-moonfly-colors", enabled = false, name = "moonfly", lazy = false, priority = 1000 },
 	{
 		"rebelot/kanagawa.nvim",
 		opts = {
@@ -108,7 +126,7 @@ return {
 						surface2 = "#4d4d4d",
 						surface1 = "#404040",
 						surface0 = "#292929",
-						base = "#202020",   -- "#1d2224",
+						base = "#202020", -- "#1d2224",
 						mantle = "#262626", -- "#1d2224",
 						crust = "#1f2223",
 					},

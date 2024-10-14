@@ -31,6 +31,7 @@ return {
         formatting.rubocop,
         formatting.google_java_format,
         diagnostics.flake8,
+        -- diagnostics.biome,
         -- diagnostics.eslint,
         diagnostics.eslint_d,
         diagnostics.rubocop,
