@@ -1,5 +1,6 @@
 return {
   "LazyVim/LazyVim",
+  enabled = false,
   opts = {
     colorscheme = "cyberdream",
     defaults = {

@@ -1,9 +1,18 @@
 return {
 	{
+		"wtfox/jellybeans.nvim",
+		priority = 1000,
+		enabled = false,
+		config = function()
+			require("jellybeans").setup()
+			vim.cmd.colorscheme("jellybeans")
+		end,
+	},
+	{
 		"scottmckendry/cyberdream.nvim",
 		lazy = false,
 		priority = 1000,
-		enabled = true,
+		enabled = false,
 		config = function()
 			require("cyberdream").setup({
 				transparent = true,
@@ -13,7 +22,7 @@ return {
 				terminal_colors = true,
 				cache = false,
 
-				-- vim.api.nvim_command("colorscheme cyberdream")
+				vim.api.nvim_command("colorscheme cyberdream")
 			})
 		end,
 	},

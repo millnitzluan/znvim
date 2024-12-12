@@ -100,10 +100,10 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true, -- false will only do exact matching
+            fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
           },
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({
@@ -111,13 +111,21 @@ return {
               initial_mode = "normal",
               sorting_strategy = "ascending",
               layout_strategy = "horizontal",
+
               layout_config = {
                 horizontal = {
-                  width = 0.5,
-                  height = 0.4,
+                  width = 0.9,
+                  height = 0.75,
                   preview_width = 0.6,
                 },
               },
+              -- layout_config = {
+              --   horizontal = {
+              --     width = 0.5,
+              --     height = 0.4,
+              --     preview_width = 0.6,
+              --   },
+              -- },
             }),
           },
         },
