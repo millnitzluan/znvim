@@ -11,10 +11,10 @@ return {
   lazy = false,
   config = function ()
     require('mini.statusline').setup {
-      content = {
-        active = require('noirbuddy.plugins.mini-statusline').active,
-        inactive = require('noirbuddy.plugins.mini-statusline').inactive,
-      },
+      -- content = {
+      --   active = require('noirbuddy.plugins.mini-statusline').active,
+      --   inactive = require('noirbuddy.plugins.mini-statusline').inactive,
+      -- },
     }
   end,
 }

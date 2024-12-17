@@ -4,12 +4,12 @@ return {
   event = "VeryLazy",
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
-  after = "copilot.lua",
+  -- after = "copilot.lua",
   opts = {
     -- add any opts here
     defaults = {
-      provider = "copilot", -- Recommend using Claude
-      auto_suggestions_provider = "copilot",
+      provider = "Claude", -- Recommend using Claude
+      auto_suggestions_provider = "Claude",
     }
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -22,15 +22,15 @@ return {
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    {
-      "zbirenbaum/copilot.lua",
-      config = function()
-        require("copilot").setup({
-          suggestion = { enabled = true },
-          panel = { enabled = true },
-        })
-      end
-    }, -- for providers='copilot'
+    -- {
+    --   "zbirenbaum/copilot.lua",
+    --   config = function()
+    --     require("copilot").setup({
+    --       suggestion = { enabled = true },
+    --       panel = { enabled = true },
+    --     })
+    --   end
+    -- }, -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",

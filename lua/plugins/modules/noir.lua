@@ -7,10 +7,14 @@ return {
   priority = 1000,
   enabled = true,
   opts = {
-    preset = 'miami-nights',
+    preset = 'minimal',
     styles = {
       italic = true,
       undercurl = true,
     },
   },
+  config = function()
+    -- require("jellybeans").setup()
+    -- vim.cmd.colorscheme("jellybeans")
+  end
 }
