@@ -109,10 +109,30 @@ return {
       lspconfig.ts_ls.setup {
         capabilities = require('cmp_nvim_lsp').default_capabilities(),
         on_attach = function(client, bufnr)
-          -- Desativa a formatação do tsserver
-          client.capabilities.document_formatting = false
-          client.capabilities.document_range_formatting = false
+          -- Disable formatting for ts_ls to use null-ls/biome instead
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+
+          -- Disable tsserver formatting
+          if client.name == "ts_ls" then
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end
+
+          lsp_attach(client, bufnr)
         end,
+        settings = {
+          typescript = {
+            format = {
+              enable = false, -- Disable TypeScript formatting
+            },
+          },
+          javascript = {
+            format = {
+              enable = false, -- Disable JavaScript formatting
+            },
+          },
+        },
       }
     end
   }
