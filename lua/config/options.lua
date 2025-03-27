@@ -1,4 +1,5 @@
 local options = {
+    guicursor = "a:blinkon50",
     backup = false,                          -- creates a backup file
     breakindent = true,                      -- wrap lines with indent
     clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
