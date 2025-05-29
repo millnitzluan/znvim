@@ -2,7 +2,7 @@ return {
   "LazyVim/LazyVim",
   enabled = false,
   opts = {
-    colorscheme = "cyberdream",
+    colorscheme = "onedarkpro",
     defaults = {
       lsp = false,
       autocmds = false, -- lazyvim.config.autocmds
