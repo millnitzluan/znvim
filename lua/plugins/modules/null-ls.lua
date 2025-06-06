@@ -35,10 +35,10 @@ return {
         formatting.stylua,
         formatting.rubocop,
         formatting.google_java_format,
-        diagnostics.flake8,
+        -- diagnostics.flake8,
         -- diagnostics.biome,
         -- diagnostics.eslint,
-        diagnostics.biome,
+        -- diagnostics.biome,
         diagnostics.rubocop,
       },
     })
