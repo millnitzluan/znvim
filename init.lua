@@ -4,6 +4,6 @@ vim.g.maplocalleader = " "
 require("config.keymaps")
 require("config.options")
 require("config.autocmds")
--- require('config.theme').setup()
 require("plugins")
-vim.cmd([[colorscheme tokyonight-storm]])
+
+vim.cmd([[colorscheme gruvbox-material]])
