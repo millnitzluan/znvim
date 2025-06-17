@@ -1,7 +1,7 @@
 return {
   "nvimtools/none-ls.nvim",
   lazy = false,
-  enabled = true,
+  enabled = false,
   dependencies = {
     "nvimtools/none-ls-extras.nvim",
   },
@@ -26,7 +26,7 @@ return {
     null_ls.setup({
       debug = false,
       sources = {
-        formatting.prettierd,
+        formatting.prettier,
         -- formatting.biome.with({
         --   prefer_local = "node_modules/.bin",
         --   cwd = function(params)
@@ -36,14 +36,10 @@ return {
         formatting.terraform_fmt,
         formatting.black.with({ extra_args = { "--fast" } }),
         formatting.stylua,
-        -- formatting.rubocop,
-        formatting.google_java_format,
         -- diagnostics.flake8,
         -- diagnostics.biome,
         -- diagnostics.eslint_d,
-        require("none-ls.diagnostics.eslint_d"),
-        -- diagnostics.biome,
-        -- diagnostics.rubocop,
+        require("none-ls.diagnostics.eslint"),
       },
     })
   end,

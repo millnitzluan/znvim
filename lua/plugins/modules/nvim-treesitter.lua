@@ -4,7 +4,7 @@ return {
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     lazy = false,
-    event = { "BufReadPost", "BufNewFile" },
+    -- event = { "BufReadPost", "BufNewFile" },
     enabled = true,
     dependencies = {
       "windwp/nvim-ts-autotag",

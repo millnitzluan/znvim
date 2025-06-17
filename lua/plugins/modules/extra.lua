@@ -63,26 +63,25 @@ return {
     end,
   },
 
-
   {
-    'MagicDuck/grug-far.nvim',
+    "MagicDuck/grug-far.nvim",
     opts = { headerMaxWidth = 80 },
-    cmd = 'GrugFar',
+    cmd = "GrugFar",
     keys = {
       {
-        '<leader>r',
+        "<leader>r",
         function()
-          local grug = require 'grug-far'
-          local ext = vim.bo.buftype == '' and vim.fn.expand '%:e'
-          grug.open {
+          local grug = require("grug-far")
+          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+          grug.open({
             transient = true,
             prefills = {
-              filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
+              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
             },
-          }
+          })
         end,
-        mode = { 'n', 'v' },
-        desc = 'Replace',
+        mode = { "n", "v" },
+        desc = "Replace",
       },
     },
   },
@@ -138,26 +137,6 @@ return {
         comma = 1,
       })
     end,
-  },
-
-  -- Indent guide for Neovim
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    enabled = false,
-    version = "2.1.0",
-    opts = {
-      char = "┊",
-      -- char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-      show_trailing_blankline_indent = false,
-      show_current_context = false,
-    },
-  },
-
-  -- editor config support
-  {
-    "editorconfig/editorconfig-vim",
   },
 
   -- Enhanced f/t motions for Leap
