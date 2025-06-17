@@ -1,7 +1,7 @@
 return {
   "nvimtools/none-ls.nvim",
   lazy = false,
-  enabled = false,
+  enabled = true,
   dependencies = {
     "nvimtools/none-ls-extras.nvim",
   },
