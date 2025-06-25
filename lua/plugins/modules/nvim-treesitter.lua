@@ -16,15 +16,11 @@ return {
     end,
     config = function()
       require("nvim-treesitter.configs").setup({
-        autotag = {
-          enable = true,
-          enable_rename = true,
-          enable_close = true,
-          enable_close_on_slash = true,
-        },
-        -- highlight = {
+        -- autotag = {
         --   enable = true,
-        --   additional_vim_regex_highlighting = false,
+        --   enable_rename = true,
+        --   enable_close = true,
+        --   enable_close_on_slash = true,
         -- },
         highlight = {
           enable = true,
@@ -81,12 +77,12 @@ return {
               ["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
             },
             selection_modes = {
-              ["@parameter.outer"] = "v",   -- charwise
-              ["@parameter.inner"] = "v",   -- charwise
-              ["@function.outer"] = "v",    -- charwise
+              ["@parameter.outer"] = "v", -- charwise
+              ["@parameter.inner"] = "v", -- charwise
+              ["@function.outer"] = "v", -- charwise
               ["@conditional.outer"] = "V", -- linewise
-              ["@loop.outer"] = "V",        -- linewise
-              ["@class.outer"] = "<c-v>",   -- blockwise
+              ["@loop.outer"] = "V", -- linewise
+              ["@class.outer"] = "<c-v>", -- blockwise
             },
             include_surrounding_whitespace = false,
           },
@@ -119,8 +115,8 @@ return {
           "tsx",
           "jsx",
         },
-        enable_close = true,     -- Auto close tags
-        enable_rename = true,    -- Auto rename pairs of tags
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
         enable_close_on_slash = false, -- Auto close on trailing </
         -- Also override individual filetype configs, these take priority.
         -- Empty by default, useful if one of the "opts" global settings

@@ -1,10 +1,4 @@
 return {
-  -- Autotags
-  {
-    "windwp/nvim-ts-autotag",
-    opts = {},
-  },
-
   -- delete buffer
   {
     "famiu/bufdelete.nvim",
@@ -26,8 +20,32 @@ return {
     lazy = false,
   },
   -- useful when there are embedded languages in certain types of files (e.g. Vue or React)
-  { "joosepalviste/nvim-ts-context-commentstring", lazy = true },
+  {
+    "joosepalviste/nvim-ts-context-commentstring",
+    ft = { "typescriptreact", "vue", "tsx", "react" },
+    config = function()
+      require("ts_context_commentstring").setup({
+        enable_autocmd = false,
+      })
 
+      local get_option = vim.filetype.get_option
+      vim.filetype.get_option = function(filetype, option)
+        return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+          or get_option(filetype, option)
+      end
+    end,
+  },
+  {
+    "dmmulroy/ts-error-translator.nvim",
+    lazy = false,
+    enabled = true,
+    opts = {
+      -- custom options here
+    },
+    config = function()
+      require("ts-error-translator").setup()
+    end,
+  },
   -- Neovim plugin to improve the default vim.ui interfaces
   {
     "stevearc/dressing.nvim",
@@ -86,12 +104,6 @@ return {
     },
   },
 
-  -- -- find and replace
-  -- {
-  --   "windwp/nvim-spectre",
-  --   event = "BufRead",
-  -- },
-
   -- Add/change/delete surrounding delimiter pairs with ease
   {
     "kylechui/nvim-surround",
@@ -107,35 +119,12 @@ return {
     "tpope/vim-sleuth",
   },
 
-  -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API
-  {
-    "folke/neodev.nvim",
-    config = function()
-      require("neodev").setup({
-        library = { plugins = { "neotest" }, types = true },
-      })
-    end,
-  },
-
   -- Neovim Lua plugin to automatically manage character pairs. Part of 'mini.nvim' library.
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
     config = function(_, opts)
       require("mini.pairs").setup(opts)
-    end,
-  },
-
-  -- Lorem Ipsum generator for Neovim
-  {
-    "derektata/lorem.nvim",
-    enabled = false,
-    config = function()
-      local lorem = require("lorem")
-      lorem.setup({
-        sentenceLength = "mixedShort",
-        comma = 1,
-      })
     end,
   },
 
@@ -222,42 +211,6 @@ return {
           TypeParameter = " ",
         },
       })
-    end,
-  },
-
-  -- persist sessions
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    opts = {},
-  },
-
-  -- better code annotation
-  {
-    "danymat/neogen",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "L3MON4D3/LuaSnip",
-    },
-    config = function()
-      local neogen = require("neogen")
-
-      neogen.setup({
-        snippet_engine = "luasnip",
-      })
-    end,
-    -- version = "*"
-  },
-
-  {
-    "ThePrimeagen/refactoring.nvim",
-    enabled = false,
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-    config = function()
-      require("refactoring").setup({})
     end,
   },
 
