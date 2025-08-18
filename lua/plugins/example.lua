@@ -13,11 +13,35 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "rebelot/kanagawa.nvim" },
 
-  -- Configure LazyVim to load gruvbox
+  -- add catppuccin
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    enabled = true,
+    priority = 1000,
+    opts = {
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+    },
+    config = function()
+      -- load the colorscheme here
+      vim.cmd("colorscheme catppuccin-mocha")
+    end,
+  },
+
+  -- add onedark
+  {
+    "navarasu/onedark.nvim",
+    priority = 1000,
+    opts = {
+      style = "dark", -- dark, darker, cool, deep, warm, warmer, light
+    },
+  },
+
+  -- Configure LazyVim to load catppuccin-mocha
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "catppuccin-mocha",
     },
   },
 
