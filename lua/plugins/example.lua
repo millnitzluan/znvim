@@ -17,7 +17,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = true,
+    enabled = false,
     priority = 1000,
     opts = {
       flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -41,7 +41,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "cyberdream",
     },
   },
 
