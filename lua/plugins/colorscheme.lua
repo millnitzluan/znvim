@@ -6,6 +6,17 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     enabled = true,
     config = function()
+      require("kanagawa").setup({
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+          },
+        },
+      })
       -- load the colorscheme here
       vim.cmd("colorscheme kanagawa")
     end,
