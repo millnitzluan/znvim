@@ -1,6 +1,38 @@
 return {
   -- add kanagawa theme
   {
+    "sainnhe/gruvbox-material",
+    enabled = false,
+    priority = 1000,
+    config = function()
+      vim.g.gruvbox_material_transparent_background = 1
+      vim.g.gruvbox_material_foreground = "mix"
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_ui_contrast = "high"
+      vim.g.gruvbox_material_float_style = "bright"
+      vim.g.gruvbox_material_statusline_style = "mix" -- Options: "original", "material", "mix", "afterglow"
+      vim.g.gruvbox_material_cursor = "auto"
+
+      -- vim.g.gruvbox_material_colors_override = { bg0 = '#16181A' } -- #0e1010
+      -- vim.g.gruvbox_material_better_performance = 1
+
+      vim.cmd.colorscheme("gruvbox-material")
+
+      -- Custom statusline highlights
+      -- vim.api.nvim_set_hl(0, "StatusLine", {
+      --   bg = "#1C2021", -- Dark gray background
+      --   fg = "#ebdbb2", -- Light text
+      --   bold = false
+      -- })
+      --
+      -- vim.api.nvim_set_hl(0, "StatusLineNC", {
+      --   bg = "#1C2021", -- Darker background for inactive windows
+      --   fg = "#928374", -- Muted text
+      --   bold = false
+      -- })
+    end,
+  },
+  {
     "rebelot/kanagawa.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -19,37 +51,6 @@ return {
       })
       -- load the colorscheme here
       vim.cmd("colorscheme kanagawa")
-    end,
-  },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    enabled = false,
-    config = function()
-      -- load the colorscheme here
-      vim.cmd("colorscheme cyberdream")
-    end,
-  },
-  {
-    "nyxvamp-theme/neovim",
-    priority = 1000, -- ensure it loads first
-    enabled = false,
-    config = function()
-      require("nyxvamp").setup({
-        variant = "obsidian", -- 'radiance' (light), 'veil' (dark), 'obsidian' (very dark)
-        transparent = false, -- enable transparency
-        italics = {
-          comments = true,
-          keywords = true,
-          functions = true,
-          strings = true,
-          variables = true,
-        },
-      })
-
-      -- apply the colorscheme after setup
-      require("nyxvamp").colorscheme()
     end,
   },
 }

@@ -10,8 +10,7 @@ if true then return {} end
 -- * override the configuration of LazyVim plugins
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
-  { "rebelot/kanagawa.nvim" },
+  -- { "ellisonleao/gruvbox.nvim" },
 
   -- add catppuccin
   {
