@@ -3,3 +3,4 @@
 -- Add any additional options here
 vim.g.lazyvim_eslint_auto_format = true
 vim.g.snacks_animate = false
+vim.g.root_spec = { "cwd" }

@@ -7,6 +7,13 @@ local opts = { noremap = true, silent = true }
 map("n", "<C-n>", ":bnext<CR>", opts)
 map("n", "<C-p>", ":bprevious<CR>", opts)
 
+-- Copy relative path to clipboard
+map("n", "<leader>yp", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy relative path" })
+
 -- Custom command to open Cursor
 vim.api.nvim_create_user_command("Cursor", function()
   local file = vim.fn.expand("%") -- Get relative path of current file
